@@ -31,13 +31,8 @@
         "background": "#6fbaaa"
     },
     "videos": [{
-        "id": "blue",
-        "kind": "blue",
-        "audio": "blue",
-        "question": "match the blue",
-        "tint": "0x0000FF",
-        "text": "Blue",
-        "image": "white_box",
+        "id": "1",
+        "slug": "1-1-1",
         "tts": true
     }],
     "tts_voices": [

@@ -1,10 +1,13 @@
-
 var webpack = require('webpack');
 var path = require('path');
 var loaders = require('./webpack.loaders');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+
+var otsimoPath = path.resolve(__dirname, 'node_modules', 'otsimo');
+var sourcePath = path.resolve(__dirname, 'src');
 
 // local css modules
 loaders.push({
@@ -63,6 +66,13 @@ module.exports = {
 			template: './src/template.html',
 			title: 'Webpack App'
 		}),
-		new webpack.optimize.DedupePlugin()
+		new webpack.optimize.DedupePlugin(),
+		new CopyWebpackPlugin([{
+			context: sourcePath,
+			from: '**/*.{woff,json,svg,mp4}',
+		}, {
+			context: otsimoPath,
+			from: 'otsimo.js'
+		}])
 	]
 };
