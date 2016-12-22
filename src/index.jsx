@@ -33,15 +33,17 @@ otsimo.run(() =>{
         });
     });
   });
+  // Preload all the videos listed.
+
 });
 
 function preload(fileId, fileAdress){
-   preloadQ.loadFile({id:fileId, src:fileAdress});
+   preloadQ.loadFile({id:fileId, src:fileAdress, type:createjs.AbstractLoader.VIDEO});
 }
 
 function handlePreloaded() {
     console.log("Preloaded");
-    console.log(preloadQ.getResult("1-1-1"));
+    // Maybe Not?
 
     render( <AppContainer><App/></AppContainer>, document.querySelector("#app"));
     // Render React app.

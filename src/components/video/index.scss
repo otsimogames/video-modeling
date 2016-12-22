@@ -1,4 +1,19 @@
 .video {
   height:100%; float:left;
   width:calc(100% / 3);
+  position:fixed;
+  top:15%;
+  transition:200ms all;
+}
+
+.video1 {
+  left:5%;
+}
+
+.video2 {
+  left:calc(5% + 100% / 3 * 1);
+}
+
+.video3 {
+  left:calc(5% + 100% / 3 * 2);
 }
