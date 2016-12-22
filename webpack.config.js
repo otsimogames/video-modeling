@@ -2,11 +2,15 @@
 var webpack = require('webpack');
 var path = require('path');
 var loaders = require('./webpack.loaders');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
+var otsimoPath = path.resolve(__dirname, 'node_modules', 'otsimo');
+var sourcePath = path.resolve(__dirname, 'src');
+
 const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT || "8888";
+const PORT = process.env.PORT || "3001";
 
 // global css
 loaders.push({
@@ -60,7 +64,7 @@ module.exports = {
 		contentBase: "./public",
 		// do not print bundle build stats
 		noInfo: true,
-		// enable HMR
+		// enable HMR - hot module reload
 		hot: true,
 		// embed the webpack-dev-server runtime into the bundle
 		inline: true,
@@ -76,5 +80,12 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './src/template.html'
 		}),
+		new CopyWebpackPlugin([{
+			context: sourcePath,
+			from: '**/*.{woff,json,svg}',
+		}, {
+			context: otsimoPath,
+			from: 'otsimo.js'
+		}])
 	]
 };

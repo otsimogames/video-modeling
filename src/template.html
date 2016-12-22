@@ -8,9 +8,15 @@
 </head>
 
 <body>
-	<div class="container">
-		<div id="app">Loading...</div>
-	</div>
+	<div id="app">Loading...</div>
+	<script src="otsimo.js"></script>
+	<script type="text/javascript">
+		otsimo.init({
+			language: "en",
+			capabilities: ["tts"],
+			isTestApp: true
+		});
+	</script>
 </body>
 
 </html>
