@@ -44,11 +44,23 @@ export default class VideoHolder extends React.Component {
 		return videos;
 	}
 
+	holderClassName() {
+		let additionalClass;
+		if (this.props.videoQuantity == 2) {
+			additionalClass = styles.videoHolder2;
+		} else if (this.props.videoQuantity == 3) {
+			additionalClass = styles.videoHolder3;
+		} else if (this.props.videoQuantity == 4) {
+			additionalClass = styles.videoHolder4;
+		}
+		return styles.videoHolder + " " + additionalClass;
+	}
+
 	render() {
 		return (
-			<div className={styles.videoHolder}>
+			<div className={this.holderClassName()}>
 				{this.prepVideos()}
-				<button onClick={this.animatePlayVideos.bind(this)}>Animate</button>
+				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>Animate</button>
 			</div>
 		)
 	}

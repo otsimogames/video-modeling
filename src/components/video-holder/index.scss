@@ -1,9 +1,63 @@
 .videoHolder {
-  height:70%;
-  width:94%;
-  left:3%;
-  position:relative;
-  top:15%;
-  background:#fdfdfd;
-  border-radius: 10px;
+    height: 70% !important;
+    width: 94%;
+    left: 3%;
+    position: relative;
+    top: 15%;
+    background: #fdfdfd;
+    border-radius: 10px;
+}
+
+.button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+/* Video Grid with 2 videos */
+.videoHolder2 div {
+    width: calc(94% / 2);
+}
+
+.videoHolder2 div:nth-child(1) {
+    left: %3;
+}
+
+.videoHolder2 div:nth-child(2) {
+    left: calc(94% / 2 * 1 + 3%);
+}
+/* Video Grid with 3 videos */
+.videoHolder3 div {
+    width: calc(94% / 3);
+}
+
+.videoHolder3 div:nth-child(1) {
+    left: %3;
+}
+
+.videoHolder3 div:nth-child(2) {
+    left: calc(94% / 3 * 1 + 3%);
+}
+
+.videoHolder3 div:nth-child(3) {
+    left: calc(94% / 3 * 2 + 3%);
+}
+/* Video Grid with 4 videos */
+.videoHolder4 div {
+    width: calc(94% / 4);
+}
+
+.videoHolder4 div:nth-child(1) {
+    left: %3;
+}
+
+.videoHolder4 div:nth-child(2) {
+    left: calc(94% / 4 * 1 + 3%);
+}
+
+.videoHolder4 div:nth-child(3) {
+    left: calc(94% / 4 * 2 + 3%);
+}
+
+.videoHolder4 div:nth-child(4) {
+    left: calc(94% / 4 * 3 + 3%);
 }
