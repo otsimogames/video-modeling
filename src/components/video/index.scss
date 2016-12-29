@@ -2,7 +2,8 @@
     height: 70%;
     position: fixed;
     top: 15%;
-    transition: 200ms all;
+    transition: 300ms all;
+    z-index: 1;
 }
 
 .video video {
@@ -14,10 +15,11 @@
     margin: auto;
 }
 
-.video:hover {
-    height: 100%;
+.videoActive {
+    height: 100% !important;
     top: 0 !important;
-    width: 500px;
+    width: 500px !important;
     left: calc(50% - 250px) !important;
     z-index: 99;
+    background: #eee;
 }
