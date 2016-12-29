@@ -6,6 +6,7 @@ export default class VideoHolder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.videos = [];
+		this.state = {activeVideo: -1};
 	}
 
 	componentDidMount() {
@@ -18,28 +19,36 @@ export default class VideoHolder extends React.Component {
 		let i = 0;
 		this.videos.forEach((vid) => {
 			vid.onended = () => {
-				this.playNext(vid.id);
+				this.playVideo(vid.id);
 			}
 			i++;
 		});
 
 		// Start Animation
-		this.videos[0].play();
+		this.playVideo("video0");
 	}
 
-	playNext(vidId) {
-		let video2Play = this.videos[parseInt(vidId.replace('video', ''))];
+	playVideo(vidId) {
+		let myVidInt = parseInt(vidId.replace('video', ''));
+		let video2Play = this.videos[myVidInt];
 		if (video2Play) {
+			this.setState({activeVideo: myVidInt});
 			video2Play.play();
 		} else {
-			console.log("All Ended");
+			this.setState({activeVideo: -1});
 		}
 	}
 
-	prepVideos() {
+	prepVideos(activeVid) {
 		var videos = [];
 		for (var i = 0; i < this.props.videoQuantity; i++) {
-			videos.push(<Video id={i + 1} key={i + 1} slug="1-2-1"/>);
+			videos.push(
+				<Video
+				id={i + 1}
+				key={i + 1}
+				slug={"1-2-" + parseInt(i + 1)}
+				active={(i == activeVid) ? "true": "false"}/>
+			);
 		}
 		return videos;
 	}
@@ -59,8 +68,10 @@ export default class VideoHolder extends React.Component {
 	render() {
 		return (
 			<div className={this.holderClassName()}>
-				{this.prepVideos()}
-				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>Animate</button>
+				{this.prepVideos(this.state.activeVideo)}
+				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>
+					Animate ({this.state.activeVideo})
+				</button>
 			</div>
 		)
 	}
