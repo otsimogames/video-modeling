@@ -41,8 +41,7 @@ export default class VideoHolder extends React.Component {
 		let answerId = id;
 		let maleOrFemale = randInt(0,1) ? "female": "male";
 		let genderArray = vods[id].types[maleOrFemale];
-		let typeArray = genderArray[0, genderArray.length - 1];
-		console.log(typeArray);
+		let typeArray = genderArray[randInt(0, genderArray.length - 1)];
 		return parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
 	}
 
@@ -70,6 +69,23 @@ export default class VideoHolder extends React.Component {
 		}
 	}
 
+	videoClick(videoid){
+			let videoCheck = parseInt(videoid.target.getAttribute("id").replace("video", "")) - 1;
+			if(videoCheck == this.trueAnswer){
+				this.rightAnswer(videoCheck);
+			}else{
+				this.wrongAnswer(videoCheck);
+			}
+	}
+
+	rightAnswer(videoCheck){
+			console.log("Right Answer!");
+	}
+
+	wrongAnswer(videoCheck){
+			console.log("Wrong Answer!");
+	}
+
 	prepVideos(activeVid) {
 		var videos = [];
 		for (var i = 0; i < this.props.videoQuantity; i++) {
@@ -78,6 +94,7 @@ export default class VideoHolder extends React.Component {
 				id={i + 1}
 				key={i + 1}
 				slug={this.videoGrid[i]}
+				onClick={(e) => this.videoClick(e)}
 				active={(i == activeVid) ? "true": "false"}/>
 			);
 		}
