@@ -9,16 +9,24 @@ var preloadQ = new createjs.LoadQueue();
 // Create preload queue
 
 
-otsimo.run(() =>{
+otsimo.run(() => {
   let app = document.querySelector("#app");
   // Carrier DOM object.
 
-  let otsLayout = otsimo.kv.layout;
-  // Locatization file layout object.
+  let otsKV = otsimo.kv;
+  // Locatization file object.
 
-  app.style.background = otsLayout.background;
+  app.innerHTML = "<div id='loading'>" + otsKV.loadingText.text + "</div>";
+  let loadingObj = document.getElementById("loading");
+  loading.style.textAlign = otsKV.loadingText.align;
+  loading.style.lineHeight = otsimo.height + "px";
+  loading.style.color = otsKV.loadingText.color;
+  loading.style.fontSize = otsKV.loadingText.size
+
+  app.style.background = otsKV.layout.background;
   app.style.height = otsimo.height + "px";
   app.style.width = otsimo.width + "px";
+  app.style.backgroundImage = "url('"+ otsKV.layout.backgroundImage +"')";
   // Initilize app width and height
 
   otsimo.kv.videos.forEach(v => {

@@ -82,7 +82,7 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin([{
 			context: sourcePath,
-			from: '**/*.{woff,json,svg,mp4}',
+			from: '**/*.{woff,json,svg,mp4,png}',
 		}, {
 			context: otsimoPath,
 			from: 'otsimo.js'

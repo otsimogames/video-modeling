@@ -64,12 +64,12 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './src/template.html',
-			title: 'Webpack App'
+			title: 'Video Modeling App'
 		}),
 		new webpack.optimize.DedupePlugin(),
 		new CopyWebpackPlugin([{
 			context: sourcePath,
-			from: '**/*.{woff,json,svg,mp4}',
+			from: '**/*.{woff,json,svg,mp4,png}',
 		}, {
 			context: otsimoPath,
 			from: 'otsimo.js'
