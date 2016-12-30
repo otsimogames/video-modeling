@@ -1,5 +1,6 @@
 import styles from './index.scss';
 import React from 'react';
+import Home from './components/home/app.jsx';
 import VideoHolder from './components/video-holder/app.jsx';
 
 export default class App extends React.Component {
@@ -15,7 +16,10 @@ export default class App extends React.Component {
 
 	render() {
 		return (
+			<div>
+				<Home show="false" />
 				<VideoHolder videoQuantity={this.videoQuantity}/>
+			</div>
 			)
 	}
 }
