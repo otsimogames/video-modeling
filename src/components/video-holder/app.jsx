@@ -1,7 +1,9 @@
 import styles from './index.scss';
 import React from 'react';
 import Video from '../video/app.jsx';
+import Back from '../back/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
+
 
 export default class VideoHolder extends React.Component {
 	constructor(props) {
@@ -109,6 +111,20 @@ export default class VideoHolder extends React.Component {
  		}
  		return styles.videoHolder + " " + additionalClass;
  	}
+
+	/**
+	 * Get back to main menu of the game.
+	 *
+	 */
+	backMainMenu(){
+		console.log("You are in main menu");
+	}
+
+	/**
+	 * Generate the class name of videoHolder Component
+	 * according to videoQuantity.
+	 *
+	 */
 	videoClick(videoid){
 			let videoCheck = parseInt(videoid.target.getAttribute("id").replace("video", "")) - 1;
 			if(videoCheck == this.trueAnswer){
@@ -128,10 +144,9 @@ export default class VideoHolder extends React.Component {
 
 
 	/**
-	 * Prepare video component array
-	 * respect to the current active video.
+	 * Prepare the video DOM array respect to active Vid.
 	 *
-	 * @param {activeVid} id
+	 * @param {acriveVid} active videos id
 	 */
 	prepVideos(activeVid) {
 		var videos = [];
@@ -155,6 +170,8 @@ export default class VideoHolder extends React.Component {
 				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>
 					Animate ({this.state.activeVideo})
 				</button>
+
+				<Back onClick={this.backMainMenu} />
 			</div>
 		)
 	}
