@@ -2,6 +2,7 @@ import styles from './index.scss';
 import React from 'react';
 import Video from '../video/app.jsx';
 import Back from '../back/app.jsx';
+import Announce from '../announce/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
 
 
@@ -13,6 +14,7 @@ export default class VideoHolder extends React.Component {
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.videoGrid = [];
+		this.trueText = "Show";
 		this.chooseVideos();
 	}
 
@@ -37,7 +39,9 @@ export default class VideoHolder extends React.Component {
 		let randNumber = randInt(0, vods.length - 1);
 		this.videoGrid[this.trueAnswer] = this.getRandVideoSlugById(randNumber);
 		// Push the true answer in.
-		console.log("Which is: " + vods[randNumber].text);
+
+		this.announceUpdate(vods[randNumber].text);
+		// Update announcer text.
 
 		let i = 0;
 		while(i < this.props.videoQuantity){
@@ -46,6 +50,15 @@ export default class VideoHolder extends React.Component {
 			}
 			i++;
 		}
+	}
+
+	/**
+	 * Update the announcer text by given text.
+	 *
+	 * @param {text} string
+	 */
+	announceUpdate(text){
+		this.trueText = otsimo.kv.announce.text.replace("{$1}", text);
 	}
 
 	/**
@@ -172,6 +185,7 @@ export default class VideoHolder extends React.Component {
 				</button>
 
 				<Back onClick={this.backMainMenu} />
+				<Announce text={this.trueText} />
 			</div>
 		)
 	}

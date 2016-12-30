@@ -15,7 +15,8 @@
         "size": "50px",
         "align": "center"
     },
-    "announceTextStyle": {
+    "announce": {
+        "text": "Show {$1}",
         "strokeThickness": 10,
         "color": "#FFFFFF",
         "stroke": "#FFFFFF",
