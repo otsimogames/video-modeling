@@ -5,12 +5,27 @@ export default class Video extends React.Component {
 	constructor(props) {
 		super(props);
 	}
+
+	/**
+	 * Generate the video slug of the word.
+	 *
+	 */
 	videoSlug = () => {
 		return "data/videos/" + this.props.slug + ".mp4";
 	}
+
+	/**
+	 * Return video id string
+	 *
+	 */
 	videoId = () => {
 		return "video" + this.props.id;
 	}
+
+	/**
+	 * Generate class name respect video beeing active.
+	 *
+	 */
 	computeClassName(){
 		let classArray = styles.video;
 		if(this.props.active == "true"){

@@ -14,17 +14,27 @@ export default class VideoHolder extends React.Component {
 		this.chooseVideos();
 	}
 
+	/**
+	 * Runs right after component is mounted.
+	 * Fills the video array with video DOM elements.
+	 *
+	 */
 	componentDidMount() {
 		for (var i = 0; i < this.props.videoQuantity; i++) {
 			this.videos.push(document.getElementById('video' + parseInt(i + 1)));
 		}
 	}
 
+	/**
+	 * Randomly chooses a video and fills the rest of the array
+	 * with random (but NOT choosen previously) videos.
+	 *
+	 */
 	chooseVideos(){
 		let vods = otsimo.kv.videos;
 		let randNumber = randInt(0, vods.length - 1);
 		this.videoGrid[this.trueAnswer] = this.getRandVideoSlugById(randNumber);
-		// Pushed the true answer in.
+		// Push the true answer in.
 		console.log("Which is: " + vods[randNumber].text);
 
 		let i = 0;
@@ -36,6 +46,11 @@ export default class VideoHolder extends React.Component {
 		}
 	}
 
+	/**
+	 * Randomly choose video from a video set.
+	 *
+	 * @param {id} id of videoset
+	 */
 	getRandVideoSlugById(id){
 		let vods = otsimo.kv.videos;
 		let answerId = id;
@@ -45,6 +60,10 @@ export default class VideoHolder extends React.Component {
 		return parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
 	}
 
+	/**
+	 * Animate videos on and on using playVideo function
+	 *
+	 */
 	animatePlayVideos() {
 		let i = 0;
 		this.videos.forEach((vid) => {
@@ -58,6 +77,11 @@ export default class VideoHolder extends React.Component {
 		this.playVideo("video0");
 	}
 
+	/**
+	 * Plays and animates the video with given id.
+	 *
+	 * @param {id} id Video DOM id
+	 */
 	playVideo(vidId) {
 		let myVidInt = parseInt(vidId.replace('video', ''));
 		let video2Play = this.videos[myVidInt];
@@ -69,6 +93,22 @@ export default class VideoHolder extends React.Component {
 		}
 	}
 
+	/**
+	 * Generate the class name of videoHolder Component
+	 * according to videoQuantity.
+	 *
+	 */
+	holderClassName() {
+ 		let additionalClass;
+ 		if (this.props.videoQuantity == 2) {
+ 			additionalClass = styles.videoHolder2;
+ 		} else if (this.props.videoQuantity == 3) {
+ 			additionalClass = styles.videoHolder3;
+ 		} else if (this.props.videoQuantity == 4) {
+ 			additionalClass = styles.videoHolder4;
+ 		}
+ 		return styles.videoHolder + " " + additionalClass;
+ 	}
 	videoClick(videoid){
 			let videoCheck = parseInt(videoid.target.getAttribute("id").replace("video", "")) - 1;
 			if(videoCheck == this.trueAnswer){
@@ -86,6 +126,13 @@ export default class VideoHolder extends React.Component {
 			console.log("Wrong Answer!");
 	}
 
+
+	/**
+	 * Prepare video component array
+	 * respect to the current active video.
+	 *
+	 * @param {activeVid} id
+	 */
 	prepVideos(activeVid) {
 		var videos = [];
 		for (var i = 0; i < this.props.videoQuantity; i++) {
@@ -99,18 +146,6 @@ export default class VideoHolder extends React.Component {
 			);
 		}
 		return videos;
-	}
-
-	holderClassName() {
-		let additionalClass;
-		if (this.props.videoQuantity == 2) {
-			additionalClass = styles.videoHolder2;
-		} else if (this.props.videoQuantity == 3) {
-			additionalClass = styles.videoHolder3;
-		} else if (this.props.videoQuantity == 4) {
-			additionalClass = styles.videoHolder4;
-		}
-		return styles.videoHolder + " " + additionalClass;
 	}
 
 	render() {
