@@ -4,8 +4,6 @@
     left: 3%;
     position: relative;
     top: 15%;
-    background: #fdfdfd;
-    border-radius: 10px;
 }
 
 .button {
@@ -16,7 +14,7 @@
 /* Might wanna consider recoding the following after scss */
 /* Video Grid with 2 videos */
 .videoHolder2 div {
-    width: calc(94% / 2);
+    width: calc(94% / 2 - 20px);
 }
 
 .videoHolder2 div:nth-child(1) {
@@ -28,7 +26,11 @@
 }
 /* Video Grid with 3 videos */
 .videoHolder3 div {
-    width: calc(94% / 3);
+    width: calc(94% / 3 - 30px);
+}
+
+.videoHolder3 div video {
+    top: 12%;
 }
 
 .videoHolder3 div:nth-child(1) {
@@ -44,7 +46,11 @@
 }
 /* Video Grid with 4 videos */
 .videoHolder4 div {
-    width: calc(94% / 4);
+    width: calc(94% / 4 - 20px);
+}
+
+.videoHolder4 div video {
+    top: 21%;
 }
 
 .videoHolder4 div:nth-child(1) {
