@@ -7,7 +7,13 @@ export default class Announce extends React.Component {
 	}
 	render() {
 		return (
-			<div onClick={this.props.onClick} className={styles.announce}>{this.props.text}</div>
+			<div onClick={this.props.onClick} className={styles.announce}>
+				<svg xmlns="http://www.w3.org/2000/svg">
+				  <text x="50%" y="60">
+				    {this.props.text}
+				  </text>
+				</svg>
+			</div>
 		)
 	}
 }
