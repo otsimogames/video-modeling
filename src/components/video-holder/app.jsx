@@ -10,7 +10,11 @@ export default class VideoHolder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.videos = [];
-		this.state = {activeVideo: -1, announceStatus: "hidden"};
+		this.state = {
+			activeVideo: -1,
+			announceStatus: "hidden",
+			videoCarrierStatus: "hidden"
+		};
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.videoGrid = [];
@@ -29,9 +33,9 @@ export default class VideoHolder extends React.Component {
 			this.videos.push(document.getElementById('video' + parseInt(i + 1)));
 		}
 
-		// Show & animate the announce text after component is mounted
+		// Show & animate the announce text & videoCarrier after component is mounted
 		setTimeout(() => {
-			this.setState({announceStatus: "shown"});
+			this.setState({announceStatus: "shown", videoCarrierStatus: "shown"});
 		},100);
 
 	}
@@ -42,10 +46,8 @@ export default class VideoHolder extends React.Component {
 	 *
 	 */
 	componentWillUnmount() {
-		// Hide & animate the announce text before component is unmounted
-		setTimeout(() => {
-			this.setState({announceStatus: "shown"});
-		},100);
+		// Hide & animate the announce text & videoCarrier before component is unmounted
+		this.setState({announceStatus: "hidden", videoCarrierStatus: "hidden"});
 	}
 
 	/**
@@ -132,7 +134,7 @@ export default class VideoHolder extends React.Component {
 	 * according to videoQuantity.
 	 *
 	 */
-	holderClassName() {
+	holderClassName(status) {
  		let additionalClass;
  		if (this.props.videoQuantity == 2) {
  			additionalClass = styles.videoHolder2;
@@ -141,7 +143,11 @@ export default class VideoHolder extends React.Component {
  		} else if (this.props.videoQuantity == 4) {
  			additionalClass = styles.videoHolder4;
  		}
- 		return styles.videoHolder + " " + additionalClass;
+		if(status == "shown"){
+			return styles.videoHolder + " " + styles.videoHolderShow + " " + additionalClass;
+		}else if(status == "hidden"){
+			return styles.videoHolder + " " + additionalClass;
+		}
  	}
 
 	/**
@@ -197,11 +203,11 @@ export default class VideoHolder extends React.Component {
 
 	render() {
 		return (
-			<div className={this.holderClassName()}>
+			<div className={this.holderClassName(this.state.videoCarrierStatus)}>
 				{this.prepVideos(this.state.activeVideo)}
 				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>
 					Animate ({this.state.activeVideo})
-					{this.state.announceStatus}
+					{this.state.videoCarrierStatus}
 				</button>
 
 				<Back onClick={this.backMainMenu} />

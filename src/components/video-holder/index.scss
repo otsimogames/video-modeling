@@ -3,7 +3,8 @@
     width: 94%;
     left: 3%;
     position: relative;
-    top: 15%;
+    bottom: -50%;
+    bottom: 13%;
 }
 
 .button {
@@ -30,7 +31,7 @@
 }
 
 .videoHolder3 div video {
-    top: 12%;
+    bottom: -100%;
 }
 
 .videoHolder3 div:nth-child(1) {
@@ -50,7 +51,7 @@
 }
 
 .videoHolder4 div video {
-    top: 21%;
+    bottom: -100%;
 }
 
 .videoHolder4 div:nth-child(1) {
@@ -67,4 +68,12 @@
 
 .videoHolder4 div:nth-child(4) {
     left: calc(94% / 4 * 3 + 3%);
+}
+
+.videoHolderShow.videoHolder3 div video {
+    bottom: 12%;
+}
+
+.videoHolderShow.videoHolder4 div video {
+    bottom: 21%;
 }
