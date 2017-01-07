@@ -10,7 +10,7 @@ export default class VideoHolder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.videos = [];
-		this.state = {activeVideo: -1};
+		this.state = {activeVideo: -1, announceStatus: "hidden"};
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.videoGrid = [];
@@ -21,12 +21,31 @@ export default class VideoHolder extends React.Component {
 	/**
 	 * Runs right after component is mounted.
 	 * Fills the video array with video DOM elements.
+	 * Animates the announce Text fadein
 	 *
 	 */
 	componentDidMount() {
 		for (var i = 0; i < this.props.videoQuantity; i++) {
 			this.videos.push(document.getElementById('video' + parseInt(i + 1)));
 		}
+
+		// Show & animate the announce text after component is mounted
+		setTimeout(() => {
+			this.setState({announceStatus: "shown"});
+		},100);
+
+	}
+
+	/**
+	 * Runs right before component is unmounted.
+	 * Animates the announce Text fadeout
+	 *
+	 */
+	componentWillUnmount() {
+		// Hide & animate the announce text before component is unmounted
+		setTimeout(() => {
+			this.setState({announceStatus: "shown"});
+		},100);
 	}
 
 	/**
@@ -182,10 +201,11 @@ export default class VideoHolder extends React.Component {
 				{this.prepVideos(this.state.activeVideo)}
 				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>
 					Animate ({this.state.activeVideo})
+					{this.state.announceStatus}
 				</button>
 
 				<Back onClick={this.backMainMenu} />
-				<Announce text={this.trueText} />
+				<Announce text={this.trueText} status={this.state.announceStatus} />
 			</div>
 		)
 	}
