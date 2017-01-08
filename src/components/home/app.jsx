@@ -13,8 +13,8 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<Announce text = "Choose Video Game" status = "home"/>
-				<div onClick = {this.props.onPlayGame} className={styles.play}></div>
+				<Announce text="Choose Video Game" status = "home"/>
+				<div onClick={this.props.onPlayGame} className={styles.play}></div>
 			</div>
 		)
 	}

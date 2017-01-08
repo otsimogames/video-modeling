@@ -155,7 +155,7 @@ export default class VideoHolder extends React.Component {
 	 *
 	 */
 	backMainMenu(){
-		console.log("You are in main menu");
+		this.props.onGameStop();
 	}
 
 	/**
@@ -210,7 +210,7 @@ export default class VideoHolder extends React.Component {
 					{this.state.videoCarrierStatus}
 				</button>
 
-				<Back onClick={this.backMainMenu} />
+				<Back onClick={this.backMainMenu.bind(this)} />
 				<Announce text={this.trueText} status={this.state.announceStatus} />
 			</div>
 		)

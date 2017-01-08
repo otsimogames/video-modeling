@@ -17,10 +17,14 @@ export default class App extends React.Component {
 		this.setState({play:true});
 	}
 
+	stopGame(){
+		this.setState({play:false});
+	}
+
 	render() {
 				if(this.state.play == true){
 						return (
-							<VideoHolder videoQuantity={this.videoQuantity} onSubmit/>
+							<VideoHolder videoQuantity={this.videoQuantity} onGameStop={this.stopGame.bind(this)}/>
 						);
 				}else{
 						return(
