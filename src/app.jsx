@@ -4,22 +4,28 @@ import Home from './components/home/app.jsx';
 import VideoHolder from './components/video-holder/app.jsx';
 
 export default class App extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.videoQuantity = 3;
+		this.state = {
+			play: false
+		};
 	}
 	// NOTE: Shift this to difficulty later on.
 
-	backMainMenu(){
-		console.log("Back to main menu.");
+	playGame(){
+		this.setState({play:true});
 	}
 
 	render() {
-		return (
-			<div>
-				<Home show="false" />
-				<VideoHolder videoQuantity={this.videoQuantity}/>
-			</div>
-			)
+				if(this.state.play == true){
+						return (
+							<VideoHolder videoQuantity={this.videoQuantity} onSubmit/>
+						);
+				}else{
+						return(
+							<Home onPlayGame={this.playGame.bind(this)}/>
+						);
+				}
 	}
 }

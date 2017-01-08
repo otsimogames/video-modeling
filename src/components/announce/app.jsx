@@ -9,6 +9,8 @@ export default class Announce extends React.Component {
 	currentClass(status){
 		if(status == "shown"){
 			return styles.announce + " " + styles.announceOpen;
+		}else if(status == "home"){
+				return styles.announce + " " + styles.announceHome;
 		}else if(status == "hidden"){
 			return styles.announce;
 		}

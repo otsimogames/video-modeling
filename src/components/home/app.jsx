@@ -10,19 +10,11 @@ export default class Home extends React.Component {
 		super(props);
 	}
 
-	updateClass(){
-		if(this.props.show == "true"){
-			return styles.home;
-		}else{
-			return styles.home + " " + styles.hide;
-		}
-	}
-
-
 	render() {
 		return (
-			<div className={this.updateClass}>
-				Home !!
+			<div>
+				<Announce text = "Choose Video Game" status = "home"/>
+				<div onClick = {this.props.onPlayGame} className={styles.play}></div>
 			</div>
 		)
 	}
