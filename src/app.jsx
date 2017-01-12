@@ -8,10 +8,17 @@ export default class App extends React.Component {
 		super(props);
 		this.videoQuantity = 3;
 		this.state = {
-			play: false
+			play: false,
+			times: 1
 		};
 	}
 	// NOTE: Shift this to difficulty later on.
+
+	answeredRight(){
+		let newTimes = this.state.times + 1;
+		this.setState({times:newTimes});
+		console.log(newTimes);
+	}
 
 	playGame(){
 		this.setState({play:true});
@@ -24,7 +31,13 @@ export default class App extends React.Component {
 	render() {
 				if(this.state.play == true){
 						return (
-							<VideoHolder videoQuantity={this.videoQuantity} onGameStop={this.stopGame.bind(this)}/>
+							<div key={this.state.times}>
+								<VideoHolder
+									times={this.state.times}
+									videoQuantity={this.videoQuantity}
+									onGameStop={this.stopGame.bind(this)}
+									onRightAnswer={this.answeredRight.bind(this)}/>
+							</div>
 						);
 				}else{
 						return(

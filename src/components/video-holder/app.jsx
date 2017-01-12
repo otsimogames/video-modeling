@@ -179,6 +179,7 @@ export default class VideoHolder extends React.Component {
 
 	rightAnswer(videoCheck){
 			console.log("Right Answer!");
+				this.props.onRightAnswer();
 	}
 
 	wrongAnswer(videoCheck){
