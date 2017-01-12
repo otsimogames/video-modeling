@@ -36,7 +36,12 @@ export default class VideoHolder extends React.Component {
 		// Show & animate the announce text & videoCarrier after component is mounted
 		setTimeout(() => {
 			this.setState({announceStatus: "shown", videoCarrierStatus: "shown"});
-		},100);
+
+			// Start playing videos after 2 secs.
+			setTimeout(() => {
+				this.animatePlayVideos();
+			}, 2000);
+		}, 100);
 
 	}
 
@@ -205,11 +210,6 @@ export default class VideoHolder extends React.Component {
 		return (
 			<div className={this.holderClassName(this.state.videoCarrierStatus)}>
 				{this.prepVideos(this.state.activeVideo)}
-				<button className={styles.button} onClick={this.animatePlayVideos.bind(this)}>
-					Animate ({this.state.activeVideo})
-					{this.state.videoCarrierStatus}
-				</button>
-
 				<Back onClick={this.backMainMenu.bind(this)} />
 				<Announce text={this.trueText} status={this.state.announceStatus} />
 			</div>
