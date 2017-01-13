@@ -133,6 +133,19 @@ export default class VideoHolder extends React.Component {
 	}
 
 	/**
+	 * Remove the chain video play animation after
+	 * Animation is done.
+	 *
+	 */
+	removeVideoOnended(){
+		this.videos.forEach((vid) => {
+			vid.onended = () => {
+				// do nothing.
+			}
+		});
+	}
+
+	/**
 	 * Plays and animates the video with given id.
 	 *
 	 * @param {id} id Video DOM id
@@ -146,6 +159,7 @@ export default class VideoHolder extends React.Component {
 		} else {
 			this.setState({activeVideo: -1});
 			this.setState({coverStatus:"hidden"});
+			this.removeVideoOnended();
 		}
 	}
 
@@ -189,6 +203,7 @@ export default class VideoHolder extends React.Component {
 				this.rightAnswer(videoCheck);
 			}else{
 				this.wrongAnswer(videoCheck);
+				this.videos[this.trueAnswer].play();
 			}
 	}
 
@@ -202,6 +217,7 @@ export default class VideoHolder extends React.Component {
 
 	wrongAnswer(videoCheck){
 			console.log("Wrong Answer!");
+			this.videos[videoCheck].style.opacity = "0.5";
 	}
 
 
