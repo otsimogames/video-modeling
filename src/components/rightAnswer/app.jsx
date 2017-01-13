@@ -13,6 +13,9 @@ export default class RightAnswer extends React.Component {
 	 setTimeout(() => {
 		 this.setState({announceStatus: "center"});
 	 }, 100);
+	 setTimeout(() => {
+		 this.setState({announceStatus: "hidden"});
+	 }, 1700);
  }
 
 	render() {
