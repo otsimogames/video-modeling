@@ -75,8 +75,9 @@ export default class VideoHolder extends React.Component {
 		let i = 0;
 		while(i < this.props.videoQuantity){
 			if(i != this.trueAnswer){
-				this.videoGrid[i] = this.getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
-				this.chosenVideos.push(this.videoGrid[i]);
+				let randIntNotVid = randIntNot(0, vods.length - 1, randNumber);
+				this.videoGrid[i] = this.getRandVideoSlugById(randIntNotVid);
+				this.chosenVideos.push(randIntNotVid);
 			}
 			i++;
 		}
@@ -98,14 +99,15 @@ export default class VideoHolder extends React.Component {
 	 */
 	getRandVideoSlugById(id){
 		let vods = otsimo.kv.videos;
+		let randNumber = randInt(0, vods.length - 1);
 		let answerId = id;
 		let maleOrFemale = randInt(0,1) ? "female": "male";
 		let genderArray = vods[id].types[maleOrFemale];
 		let typeArray = genderArray[randInt(0, genderArray.length - 1)];
 
 		let returnVal = parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
-		if(this.chosenVideos.includes(returnVal)){
-			return getRandVideoSlugById(id);
+		if(this.chosenVideos.includes(id)){
+			return getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
 		}else{
 			return returnVal;
 		}
