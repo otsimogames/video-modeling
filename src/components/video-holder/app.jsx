@@ -19,6 +19,7 @@ export default class VideoHolder extends React.Component {
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.videoGrid = [];
 		this.trueText = "Show";
+		this.chosenVideos = [];
 		this.chooseVideos();
 	}
 
@@ -73,6 +74,7 @@ export default class VideoHolder extends React.Component {
 		while(i < this.props.videoQuantity){
 			if(i != this.trueAnswer){
 				this.videoGrid[i] = this.getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
+				this.chosenVideos.push(this.videoGrid[i]);
 			}
 			i++;
 		}
@@ -98,7 +100,13 @@ export default class VideoHolder extends React.Component {
 		let maleOrFemale = randInt(0,1) ? "female": "male";
 		let genderArray = vods[id].types[maleOrFemale];
 		let typeArray = genderArray[randInt(0, genderArray.length - 1)];
-		return parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
+
+		let returnVal = parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
+		if(this.chosenVideos.includes(returnVal)){
+			return getRandVideoSlugById(id);
+		}else{
+			return returnVal;
+		}
 	}
 
 	/**

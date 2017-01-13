@@ -17,7 +17,7 @@ export default class App extends React.Component {
 	answeredRight(){
 		let newTimes = this.state.times + 1;
 		this.setState({times:newTimes});
-		console.log(newTimes);
+		console.log("Playing: "+ newTimes +". time");
 	}
 
 	playGame(){
