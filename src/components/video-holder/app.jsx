@@ -5,6 +5,7 @@ import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
 import RightAnswer from '../rightAnswer/app.jsx';
+import EventManager from '../../js/event.js';
 import {randInt, randIntNot} from '../../js/utils.js';
 
 
@@ -21,10 +22,12 @@ export default class VideoHolder extends React.Component {
 		};
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
+		this.currentWord = "";
 		this.videoGrid = [];
-		this.trueText = "Show";
+		this.wrongAttempt = 0;
 		this.chosenVideos = [];
 		this.chooseVideos();
+		this.event = new EventManager();
 	}
 
 	/**
@@ -70,8 +73,8 @@ export default class VideoHolder extends React.Component {
 		let randNumber = randInt(0, vods.length - 1);
 		this.videoGrid[this.trueAnswer] = this.getRandVideoSlugById(randNumber);
 		// Push the true answer in.
-
-		this.announceUpdate(vods[randNumber].text);
+		this.currentWord = vods[randNumber].text;
+		this.announceUpdate(this.currentWord);
 		// Update announcer text.
 
 		let i = 0;
@@ -209,6 +212,7 @@ export default class VideoHolder extends React.Component {
 
 	rightAnswer(videoCheck){
 			console.log("Right Answer!");
+			this.event.question(this.currentWord, this.wrongAttempt, this.videos.length);
 			this.setState({rightAnswer: true});
 			setTimeout(() => {
 				this.props.onRightAnswer();
@@ -217,6 +221,7 @@ export default class VideoHolder extends React.Component {
 
 	wrongAnswer(videoCheck){
 			console.log("Wrong Answer!");
+			this.wrongAttempt++;
 			this.videos[videoCheck].style.opacity = "0.5";
 	}
 
