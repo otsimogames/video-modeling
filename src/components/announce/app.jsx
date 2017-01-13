@@ -11,6 +11,8 @@ export default class Announce extends React.Component {
 			return styles.announce + " " + styles.announceOpen;
 		}else if(status == "home"){
 				return styles.announce + " " + styles.announceHome;
+		}else if(status == "center"){
+				return styles.announce + " " + styles.announceCenter;
 		}else if(status == "hidden"){
 			return styles.announce;
 		}
