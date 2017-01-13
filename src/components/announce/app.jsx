@@ -20,6 +20,7 @@ export default class Announce extends React.Component {
 			return styles.announce;
 		}
 	}
+	
 	render() {
 		return (
 			<div onClick={this.props.onClick} className={this.currentClass(this.props.status)}>

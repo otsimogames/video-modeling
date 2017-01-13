@@ -33,7 +33,16 @@ otsimo.run(() => {
   app.style.backgroundImage = "url('"+ otsKV.layout.backgroundImage +"')";
   // Initilize app width and height
 
-  otsimo.kv.videos.forEach(v => {
+  listVideosForPreload(otsimo.kv.videos);
+
+});
+
+function preload(fileId, fileAdress){
+   preloadQ.loadFile({id:fileId, src:fileAdress, type:createjs.AbstractLoader.VIDEO});
+}
+
+function listVideosForPreload(videoList){
+  videoList.forEach(v => {
     v.types.male.forEach(vMale => {
         vMale.forEach(vMaleTypes => {
           preload(v.id + "-" + vMaleTypes, "data/videos/" + v.id + "-" + vMaleTypes + ".mp4");
@@ -46,11 +55,6 @@ otsimo.run(() => {
     });
   });
   // Preload all the videos listed.
-
-});
-
-function preload(fileId, fileAdress){
-   preloadQ.loadFile({id:fileId, src:fileAdress, type:createjs.AbstractLoader.VIDEO});
 }
 
 function handlePreloaded() {
