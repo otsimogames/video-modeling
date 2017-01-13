@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './app.jsx';
 import createjs from 'preload-js';
+import TTSManager from './js/tts.js';
 
 var preloadQ = new createjs.LoadQueue();
     preloadQ.on("complete", handlePreloaded, this);
@@ -14,6 +15,9 @@ otsimo.run(() => {
   // Carrier DOM object.
 
   let otsKV = otsimo.kv;
+  let tts = new TTSManager();
+  tts.setVoiceDriver(otsKV.tts_voices[0]);
+
   // Locatization file object.
 
   app.innerHTML = "<div id='loading'>" + otsKV.loadingText.text + "</div>";

@@ -1,9 +1,12 @@
 import styles from './index.scss';
 import React from 'react';
+import TTSManager from '../../js/tts.js';
 
 export default class Announce extends React.Component {
 	constructor(props) {
 		super(props);
+		this.tts = new TTSManager();
+		this.tts.speak(this.props.text);
 	}
 
 	currentClass(status){
