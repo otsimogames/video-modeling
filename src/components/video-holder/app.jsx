@@ -3,6 +3,7 @@ import React from 'react';
 import Video from '../video/app.jsx';
 import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
+import RightAnswer from '../rightAnswer/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
 
 
@@ -13,7 +14,8 @@ export default class VideoHolder extends React.Component {
 		this.state = {
 			activeVideo: -1,
 			announceStatus: "hidden",
-			videoCarrierStatus: "hidden"
+			videoCarrierStatus: "hidden",
+			rightAnswer: false
 		};
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
@@ -187,7 +189,10 @@ export default class VideoHolder extends React.Component {
 
 	rightAnswer(videoCheck){
 			console.log("Right Answer!");
+			this.setState({rightAnswer: true});
+			setTimeout(() => {
 				this.props.onRightAnswer();
+			}, 2000);
 	}
 
 	wrongAnswer(videoCheck){
@@ -216,12 +221,21 @@ export default class VideoHolder extends React.Component {
 	}
 
 	render() {
-		return (
-			<div className={this.holderClassName(this.state.videoCarrierStatus)}>
-				{this.prepVideos(this.state.activeVideo)}
-				<Back onClick={this.backMainMenu.bind(this)} />
-				<Announce text={this.trueText} status={this.state.announceStatus} />
-			</div>
-		)
+		if(!this.state.rightAnswer){
+			return (
+				<div className={this.holderClassName(this.state.videoCarrierStatus)}>
+					{this.prepVideos(this.state.activeVideo)}
+					<Back onClick={this.backMainMenu.bind(this)} />
+					<Announce text={this.trueText} status={this.state.announceStatus} />
+				</div>
+			);
+		}else{
+			return (
+				<div>
+					<RightAnswer/>
+				</div>
+			);
+		}
+
 	}
 }
