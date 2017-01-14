@@ -12,15 +12,9 @@ function makeid(length = 5) {
  * @class EventManager
  */
 export default class EventManager {
-	question(word, wrongAttempt, difficulty) {
-		// word: the word that is asked to the user
-		// wrongAttempt: attempts before user gives the right answer.
-		// difficulty: is the quantity of the videos in the question.
-		otsimo.customevent('game:question', {
-			word: word,
-			wrong: wrongAttempt,
-			difficulty: difficulty
-		});
+	question(payload) {
+		payload.id = makeid();
+		otsimo.customevent('game:question', payload);
 	}
 
 	session(totalWrongAttempt, difficulty) {

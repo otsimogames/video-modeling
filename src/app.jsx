@@ -2,6 +2,8 @@ import styles from './index.scss';
 import React from 'react';
 import Home from './components/home/app.jsx';
 import VideoHolder from './components/video-holder/app.jsx';
+import Session from './js/session.js';
+
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -21,6 +23,11 @@ export default class App extends React.Component {
 	}
 
 	playGame(){
+		// Start a new session
+		this.session = new Session();
+		this.session.sessionStart();
+		// Send session start data to analytic
+
 		this.setState({play:true});
 	}
 
@@ -36,7 +43,8 @@ export default class App extends React.Component {
 									times={this.state.times}
 									videoQuantity={this.videoQuantity}
 									onGameStop={this.stopGame.bind(this)}
-									onRightAnswer={this.answeredRight.bind(this)}/>
+									onRightAnswer={this.answeredRight.bind(this)}
+									session={this.session}/>
 							</div>
 						);
 				}else{

@@ -5,7 +5,6 @@ import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
 import RightAnswer from '../rightAnswer/app.jsx';
-import EventManager from '../../js/event.js';
 import {randInt, randIntNot} from '../../js/utils.js';
 
 
@@ -27,7 +26,7 @@ export default class VideoHolder extends React.Component {
 		this.wrongAttempt = 0;
 		this.chosenVideos = [];
 		this.chooseVideos();
-		this.event = new EventManager();
+		this.session = this.props.session;
 	}
 
 	/**
@@ -51,6 +50,8 @@ export default class VideoHolder extends React.Component {
 			}, 2000);
 		}, 100);
 
+		// send data to analytic that step started
+		this.session.startStep();
 	}
 
 	/**
@@ -218,7 +219,8 @@ export default class VideoHolder extends React.Component {
 	 */
 	rightAnswer(videoCheck){
 			console.log("Right Answer!");
-			this.event.question(this.currentWord, this.wrongAttempt, this.videos.length);
+			// Send right answer data to analytic.
+			this.session.correctInput(this.currentWord, this.wrongAttempt);
 			this.setState({rightAnswer: true});
 			setTimeout(() => {
 				this.props.onRightAnswer();
@@ -235,7 +237,7 @@ export default class VideoHolder extends React.Component {
 			console.log("Wrong Answer!");
 			this.wrongAttempt++;
 			this.videos[videoCheck].style.opacity = "0.5";
-
+			this.session.wrongInput(videoCheck, this.wrongAttempt, 0, this.currentWord);
 	}
 
 
