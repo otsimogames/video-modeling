@@ -2,6 +2,7 @@ import styles from './index.scss';
 import React from 'react';
 import Home from './components/home/app.jsx';
 import VideoHolder from './components/video-holder/app.jsx';
+import EndScreen from './components/end-screen/app.jsx';
 import Session from './js/session.js';
 
 
@@ -11,6 +12,7 @@ export default class App extends React.Component {
 		this.videoQuantity = 3;
 		this.state = {
 			play: false,
+			endScreen: false,
 			times: 1
 		};
 	}
@@ -19,7 +21,14 @@ export default class App extends React.Component {
 	answeredRight(){
 		let newTimes = this.state.times + 1;
 		this.setState({times:newTimes});
-		console.log("Playing: "+ newTimes +". time");
+		if(newTimes == otsimo.kv.session_step){
+			this.endSession();
+		}
+	}
+
+	endSession(){
+		this.setState({endScreen: true});
+		this.session.sessionEnd();
 	}
 
 	playGame(){
@@ -37,6 +46,11 @@ export default class App extends React.Component {
 
 	render() {
 				if(this.state.play == true){
+					if(this.state.endScreen == true){
+						return (
+							<EndScreen />
+						);
+					}else{
 						return (
 							<div key={this.state.times}>
 								<VideoHolder
@@ -47,6 +61,7 @@ export default class App extends React.Component {
 									session={this.session}/>
 							</div>
 						);
+						}
 				}else{
 						return(
 							<Home onPlayGame={this.playGame.bind(this)}/>

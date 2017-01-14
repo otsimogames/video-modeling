@@ -34,7 +34,7 @@ export default class Session {
 		otsimo.customevent("game:session:start", payload)
 	}
 
-	end() {
+	sessionEnd() {
 		let fin = Date.now();
 		let delta = fin - this.startTime;
 

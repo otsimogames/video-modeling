@@ -11,8 +11,8 @@
     "settings/show_hint/description": "Enable or Disable the hints during the game",
     "game": {
         "name": "Choose Actions Game",
-        "step_score": 10,
-        "session_step": 10,
+        "step_score": 5,
+        "session_step": 5,
         "easy_size": 2,
         "medium_size": 3,
         "hard_size": 4
