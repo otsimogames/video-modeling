@@ -225,7 +225,7 @@ export default class VideoHolder extends React.Component {
 			this.setState({rightAnswer: true});
 			setTimeout(() => {
 				this.props.onRightAnswer();
-			}, 2000);
+			}, 3000);
 	}
 
 	/**

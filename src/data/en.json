@@ -52,6 +52,12 @@
         "background": "#80baaa",
         "backgroundImage": "/img/back_pattern.png"
     },
+    "audios": {
+        "background": "bg",
+        "rightAnswer": "applause",
+        "choose": "click",
+        "end": "finish"
+    },
     "videos": [{
             "id": "1",
             "types": {

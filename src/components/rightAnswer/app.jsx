@@ -8,6 +8,7 @@ export default class RightAnswer extends React.Component {
 		super(props);
 		this.state = {announceStatus: "hidden"};
 		this.announceText = otsimo.kv.rightAnswerText.text;
+		this.audioSlug = otsimo.kv.audios.rightAnswer;
 	}
 
 	/**
@@ -20,7 +21,7 @@ export default class RightAnswer extends React.Component {
 	 }, 100);
 	 setTimeout(() => {
 		 this.setState({announceStatus: "hidden"});
-	 }, 1700);
+	 }, 2700);
  }
 
 	render() {
@@ -28,7 +29,7 @@ export default class RightAnswer extends React.Component {
 			<div className={styles.rightAnswer}>
 				<div></div>
 				<Announce text={this.announceText} status={this.state.announceStatus} />
-				<Audio slug="applause"/>
+				<Audio slug={this.audioSlug}/>
 			</div>
 		)
 	}
