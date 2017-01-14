@@ -6,6 +6,11 @@ export default class Cover extends React.Component {
 		super(props);
 	}
 
+		/**
+		 * Change the current class relative to given status.
+		 *
+		 * @param {status} status of cover
+		 */
 	currentClass(status){
 		if(status == "shown"){
 			return styles.cover + " " + styles.coverOpen;

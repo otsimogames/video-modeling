@@ -6,9 +6,13 @@ export default class RightAnswer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {announceStatus: "hidden"};
-		this.announceText = "Congratulations!";
+		this.announceText = otsimo.kv.rightAnswerText.text;
 	}
 
+	/**
+	 * Animate announcer when the component is mounted
+	 *
+	 */
  componentDidMount() {
 	 setTimeout(() => {
 		 this.setState({announceStatus: "center"});

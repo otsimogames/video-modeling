@@ -8,12 +8,13 @@ import {randInt, randIntNot} from '../../js/utils.js';
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
+		this.gameName = otsimo.kv.game.name;
 	}
 
 	render() {
 		return (
 			<div>
-				<Announce text="Choose Video Game" status = "home"/>
+				<Announce text={this.gameName} status = "home"/>
 				<div onClick={this.props.onPlayGame} className={styles.play}></div>
 			</div>
 		)

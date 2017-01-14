@@ -12,7 +12,7 @@ export default class Video extends React.Component {
 	 * Generate the video slug of the word.
 	 *
 	 */
-	videoSlug() {
+	videoSlug = () => {
 		return "data/videos/" + this.props.slug + ".mp4";
 	}
 
@@ -20,7 +20,7 @@ export default class Video extends React.Component {
 	 * Return video id string
 	 *
 	 */
-	videoId(){
+	videoId = () => {
 		return "video" + this.props.id;
 	}
 
@@ -31,7 +31,7 @@ export default class Video extends React.Component {
 	computeClassName(){
 		let classArray = styles.video;
 		if(this.props.active == "true"){
-			classArray =   + " " + styles.videoActive;
+			classArray = classArray + " " + styles.videoActive;
 		}
 	 	return classArray;
 	}

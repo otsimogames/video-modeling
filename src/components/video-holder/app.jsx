@@ -210,6 +210,12 @@ export default class VideoHolder extends React.Component {
 			}
 	}
 
+	/**
+	 * Function that called after right answer is given
+	 * sends costumevent and shows rightAnswer Component
+	 *
+	 * @param {videoCheck} order of the video that the right answer is.
+	 */
 	rightAnswer(videoCheck){
 			console.log("Right Answer!");
 			this.event.question(this.currentWord, this.wrongAttempt, this.videos.length);
@@ -219,10 +225,17 @@ export default class VideoHolder extends React.Component {
 			}, 2000);
 	}
 
+	/**
+	 * Function that called after wrong answer is given
+	 * Changes the opacity of wrong answer
+	 *
+	 * @param {videoCheck} order of the video that wrong answer is.
+	 */
 	wrongAnswer(videoCheck){
 			console.log("Wrong Answer!");
 			this.wrongAttempt++;
 			this.videos[videoCheck].style.opacity = "0.5";
+
 	}
 
 

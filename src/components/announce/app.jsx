@@ -9,6 +9,11 @@ export default class Announce extends React.Component {
 		this.tts.speak(this.props.text);
 	}
 
+	/**
+	 * Change the current class relative to given status.
+	 *
+	 * @param {status} status of cover
+	 */
 	currentClass(status){
 		if(status == "shown"){
 			return styles.announce + " " + styles.announceOpen;
@@ -20,7 +25,7 @@ export default class Announce extends React.Component {
 			return styles.announce;
 		}
 	}
-	
+
 	render() {
 		return (
 			<div onClick={this.props.onClick} className={this.currentClass(this.props.status)}>
