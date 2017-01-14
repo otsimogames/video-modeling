@@ -4,6 +4,7 @@ import Video from '../video/app.jsx';
 import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
+import Audio from '../audio/app.jsx';
 import RightAnswer from '../rightAnswer/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
 
@@ -274,7 +275,10 @@ export default class VideoHolder extends React.Component {
 			);
 		}else{
 			return (
+				<div>
 					<RightAnswer/>
+					<Audio slug="applause"/>
+				</div>
 			);
 		}
 

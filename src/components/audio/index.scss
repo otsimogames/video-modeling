@@ -1,0 +1,13 @@
+.cover {
+    height: 100% !important;
+    width: 100% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 999999999;
+}
+
+.coverOpen {
+    display: block;
+}

@@ -69,7 +69,7 @@ module.exports = {
 		new webpack.optimize.DedupePlugin(),
 		new CopyWebpackPlugin([{
 			context: sourcePath,
-			from: '**/*.{woff,json,svg,mp4,png}',
+			from: '**/*.{woff,json,svg,mp4,mp3,png}',
 		}, {
 			context: otsimoPath,
 			from: 'otsimo.js'

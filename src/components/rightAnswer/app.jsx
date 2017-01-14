@@ -24,7 +24,7 @@ export default class RightAnswer extends React.Component {
 
 	render() {
 		return (
-			<div class={styles.rightAnswer}>
+			<div className={styles.rightAnswer}>
 				<div></div>
 				<Announce text={this.announceText} status={this.state.announceStatus} />
 			</div>

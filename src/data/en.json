@@ -22,6 +22,11 @@
         "slug": "data/videos/{$1}.mp4",
         "type": "video/mp4"
     },
+    "audioFormat": {
+        "id": "audio{$1}",
+        "slug": "data/audios/{$1}.mp3",
+        "type": "audio/mpeg"
+    },
     "loadingText": {
         "text": "Loading...",
         "color": "#FFFFFF",
