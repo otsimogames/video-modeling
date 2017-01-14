@@ -4,7 +4,6 @@ import Video from '../video/app.jsx';
 import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
-import Audio from '../audio/app.jsx';
 import RightAnswer from '../rightAnswer/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
 
@@ -20,6 +19,7 @@ export default class VideoHolder extends React.Component {
 			coverStatus: "shown",
 			rightAnswer: false
 		};
+		this.session = this.props.session;
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.currentWord = "";
@@ -27,7 +27,6 @@ export default class VideoHolder extends React.Component {
 		this.wrongAttempt = 0;
 		this.chosenVideos = [];
 		this.chooseVideos();
-		this.session = this.props.session;
 	}
 
 	/**
@@ -275,10 +274,7 @@ export default class VideoHolder extends React.Component {
 			);
 		}else{
 			return (
-				<div>
 					<RightAnswer/>
-					<Audio slug="applause"/>
-				</div>
 			);
 		}
 

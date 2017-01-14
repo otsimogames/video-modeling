@@ -1,5 +1,6 @@
 import styles from './index.scss';
 import React from 'react';
+import Audio from '../audio/app.jsx';
 import Announce from '../announce/app.jsx';
 
 export default class RightAnswer extends React.Component {
@@ -27,6 +28,7 @@ export default class RightAnswer extends React.Component {
 			<div className={styles.rightAnswer}>
 				<div></div>
 				<Announce text={this.announceText} status={this.state.announceStatus} />
+				<Audio slug="applause"/>
 			</div>
 		)
 	}
