@@ -37,7 +37,8 @@ export default class VideoHolder extends React.Component {
 	 */
 	componentDidMount() {
 		for (var i = 0; i < this.props.videoQuantity; i++) {
-			this.videos.push(document.getElementById('video' + parseInt(i + 1)));
+			let videoId = otsimo.kv.videoFormat.id.replace("{$1}", parseInt(i + 1));
+			this.videos.push(document.getElementById(videoId));
 		}
 
 		// Show & animate the announce text & videoCarrier after component is mounted
@@ -133,7 +134,7 @@ export default class VideoHolder extends React.Component {
 		});
 
 		// Start Animation
-		this.playVideo("video0");
+		this.playVideo(otsimo.kv.videoFormat.id.replace("{$1}", 0));
 	}
 
 	/**

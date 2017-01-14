@@ -6,14 +6,7 @@ export default class Video extends React.Component {
 
 	constructor(props) {
 		super(props);
-	}
-
-	/**
-	 * Generate the video slug of the word.
-	 *
-	 */
-	videoSlug = () => {
-		return "data/videos/" + this.props.slug + ".mp4";
+		this.videoFormat = otsimo.kv.videoFormat;
 	}
 
 	/**
@@ -21,7 +14,15 @@ export default class Video extends React.Component {
 	 *
 	 */
 	videoId = () => {
-		return "video" + this.props.id;
+		return this.videoFormat.id.replace("{$1}", this.props.id);
+	}
+
+	/**
+	 * Generate the video slug of the word.
+	 *
+	 */
+	videoSlug = () => {
+		return this.videoFormat.slug.replace("{$1}", this.props.slug);
 	}
 
 	/**
@@ -40,7 +41,7 @@ export default class Video extends React.Component {
 		return (
 			<div onClick={this.props.onClick} className={this.computeClassName()}>
 				<video id={this.videoId()} preload="auto">
-					<source src={this.videoSlug()} type="video/mp4"/>
+					<source src={this.videoSlug()} type={this.videoFormat.type}/>
 					Your browser does not support the video tag.
 				</video>
 			</div>

@@ -17,6 +17,11 @@
         "medium_size": 3,
         "hard_size": 4
     },
+    "videoFormat": {
+        "id": "video{$1}",
+        "slug": "data/videos/{$1}.mp4",
+        "type": "video/mp4"
+    },
     "loadingText": {
         "text": "Loading...",
         "color": "#FFFFFF",
