@@ -5,7 +5,6 @@ import VideoHolder from './components/video-holder/app.jsx';
 import EndScreen from './components/end-screen/app.jsx';
 import Session from './js/session.js';
 
-
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,54 +17,46 @@ export default class App extends React.Component {
 	}
 	// NOTE: Shift this to difficulty later on.
 
-	answeredRight(){
-		let newTimes = this.state.times + 1;
-		this.setState({times:newTimes});
-		if(newTimes == otsimo.kv.session_step){
+	answeredRight() {
+		if (this.state.times == otsimo.kv.game.session_step) {
 			this.endSession();
+		} else {
+			let newTimes = this.state.times + 1;
+			this.setState({times: newTimes});
 		}
 	}
 
-	endSession(){
+	endSession() {
 		this.setState({endScreen: true});
 		this.session.sessionEnd();
 	}
 
-	playGame(){
+	playGame() {
 		// Start a new session
 		this.session = new Session();
 		this.session.sessionStart();
 		// Send session start data to analytic
 
-		this.setState({play:true});
+		this.setState({play: true});
 	}
 
-	stopGame(){
-		this.setState({play:false});
+	stopGame() {
+		this.setState({play: false});
 	}
 
 	render() {
-				if(this.state.play == true){
-					if(this.state.endScreen == true){
-						return (
-							<EndScreen />
-						);
-					}else{
-						return (
-							<div key={this.state.times}>
-								<VideoHolder
-									times={this.state.times}
-									videoQuantity={this.videoQuantity}
-									onGameStop={this.stopGame.bind(this)}
-									onRightAnswer={this.answeredRight.bind(this)}
-									session={this.session}/>
-							</div>
-						);
-						}
-				}else{
-						return(
-							<Home onPlayGame={this.playGame.bind(this)}/>
-						);
-				}
+		if (this.state.play == true) {
+			if (this.state.endScreen == true) {
+				return (<EndScreen/>);
+			} else {
+				return (
+					<div key={this.state.times}>
+						<VideoHolder times={this.state.times} videoQuantity={this.videoQuantity} onGameStop={this.stopGame.bind(this)} onRightAnswer={this.answeredRight.bind(this)} session={this.session}/>
+					</div>
+				);
+			}
+		} else {
+			return (<Home onPlayGame={this.playGame.bind(this)}/>);
+		}
 	}
 }

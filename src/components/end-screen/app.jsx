@@ -10,7 +10,7 @@ export default class EndScreen extends React.Component {
 			announceStatus: "hidden"
 		};
 		this.announceText = otsimo.kv.endScreenText.text;
-		this.audioSlug = otsimo.kv.audios.endScreen;
+		this.audioSlug = otsimo.kv.audios.end;
 	}
 
 	/**
@@ -21,9 +21,6 @@ export default class EndScreen extends React.Component {
 		setTimeout(() => {
 			this.setState({announceStatus: "center"});
 		}, 100);
-		setTimeout(() => {
-			this.setState({announceStatus: "hidden"});
-		}, 2700);
 	}
 
 	render() {
