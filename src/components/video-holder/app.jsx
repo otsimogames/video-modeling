@@ -72,7 +72,8 @@ export default class VideoHolder extends React.Component {
 	chooseVideos() {
 		let vods = otsimo.kv.videos;
 		let randNumber = randInt(0, vods.length - 1);
-		this.videoGrid[this.trueAnswer] = this.getRandVideoSlugById(randNumber);
+		this.trueAnswerChosen = this.getRandVideoSlugById(randNumber);
+		this.videoGrid[this.trueAnswer] = this.trueAnswerChosen;
 		// Push the true answer in.
 		this.currentWord = vods[randNumber].text;
 		this.announceUpdate(this.currentWord);
@@ -114,8 +115,8 @@ export default class VideoHolder extends React.Component {
 		let typeArray = genderArray[randInt(0, genderArray.length - 1)];
 
 		let returnVal = parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length - 1)];
-		if (this.chosenVideos.includes(id)) {
-			return getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
+		if (this.chosenVideos.includes(id) || this.props.prevAsked == returnVal) {
+			return this.getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
 		} else {
 			return returnVal;
 		}
@@ -225,7 +226,7 @@ export default class VideoHolder extends React.Component {
 		this.session.correctInput(this.currentWord, this.wrongAttempt);
 		this.setState({rightAnswer: true});
 		setTimeout(() => {
-			this.props.onRightAnswer();
+			this.props.onRightAnswer(this.trueAnswerChosen);
 		}, 3000);
 	}
 

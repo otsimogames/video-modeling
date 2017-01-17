@@ -14,15 +14,17 @@ export default class App extends React.Component {
 			endScreen: false,
 			times: 1
 		};
+		this.prevAsked = "none";
 	}
 	// NOTE: Shift this to difficulty later on.
 
-	answeredRight() {
+	answeredRight(prevQuestion) {
 		if (this.state.times == otsimo.kv.game.session_step) {
 			this.endSession();
 		} else {
 			let newTimes = this.state.times + 1;
 			this.setState({times: newTimes});
+			this.prevAsked = prevQuestion;
 		}
 	}
 
@@ -51,7 +53,7 @@ export default class App extends React.Component {
 			} else {
 				return (
 					<div key={this.state.times}>
-						<VideoHolder times={this.state.times} videoQuantity={this.videoQuantity} onGameStop={this.stopGame.bind(this)} onRightAnswer={this.answeredRight.bind(this)} session={this.session}/>
+						<VideoHolder times={this.state.times} videoQuantity={this.videoQuantity} onGameStop={this.stopGame.bind(this)} onRightAnswer={this.answeredRight.bind(this)} session={this.session} prevAsked={this.prevAsked}/>
 					</div>
 				);
 			}
