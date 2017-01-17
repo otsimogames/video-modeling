@@ -7,23 +7,23 @@ export default class Audio extends React.Component {
 		this.audioFormat = otsimo.kv.audioFormat;
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		// Play the audio when component is moundted
 		document.getElementById(this.audioId()).play();
 	}
 
-	audioId(){
+	audioId() {
 		return this.audioFormat.id.replace("{$1}", this.props.slug);
 	}
 
-	audioSlug(){
+	audioSlug() {
 		return this.audioFormat.slug.replace("{$1}", this.props.slug);
 	}
 
 	render() {
 		return (
 			<audio id={this.audioId()}>
-			  <source src={this.audioSlug()} type={this.audioFormat.type}/>
+				<source src={this.audioSlug()} type={this.audioFormat.type}/>
 			</audio>
 		)
 	}

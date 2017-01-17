@@ -4,9 +4,8 @@ import Video from '../video/app.jsx';
 import Back from '../back/app.jsx';
 import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
-import RightAnswer from '../rightAnswer/app.jsx';
+import RightAnswer from '../right-answer/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
-
 
 export default class VideoHolder extends React.Component {
 	constructor(props) {
@@ -70,7 +69,7 @@ export default class VideoHolder extends React.Component {
 	 * with random (but NOT choosen previously) videos.
 	 *
 	 */
-	chooseVideos(){
+	chooseVideos() {
 		let vods = otsimo.kv.videos;
 		let randNumber = randInt(0, vods.length - 1);
 		this.videoGrid[this.trueAnswer] = this.getRandVideoSlugById(randNumber);
@@ -80,8 +79,8 @@ export default class VideoHolder extends React.Component {
 		// Update announcer text.
 
 		let i = 0;
-		while(i < this.props.videoQuantity){
-			if(i != this.trueAnswer){
+		while (i < this.props.videoQuantity) {
+			if (i != this.trueAnswer) {
 				let randIntNotVid = randIntNot(0, vods.length - 1, randNumber);
 				this.videoGrid[i] = this.getRandVideoSlugById(randIntNotVid);
 				this.chosenVideos.push(randIntNotVid);
@@ -95,7 +94,7 @@ export default class VideoHolder extends React.Component {
 	 *
 	 * @param {text} string
 	 */
-	announceUpdate(text){
+	announceUpdate(text) {
 		this.trueText = otsimo.kv.announce.text.replace("{$1}", text);
 	}
 
@@ -104,18 +103,20 @@ export default class VideoHolder extends React.Component {
 	 *
 	 * @param {id} id of videoset
 	 */
-	getRandVideoSlugById(id){
+	getRandVideoSlugById(id) {
 		let vods = otsimo.kv.videos;
 		let randNumber = randInt(0, vods.length - 1);
 		let answerId = id;
-		let maleOrFemale = randInt(0,1) ? "female": "male";
+		let maleOrFemale = randInt(0, 1)
+			? "female"
+			: "male";
 		let genderArray = vods[id].types[maleOrFemale];
 		let typeArray = genderArray[randInt(0, genderArray.length - 1)];
 
-		let returnVal = parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length-1)];
-		if(this.chosenVideos.includes(id)){
+		let returnVal = parseInt(answerId + 1) + "-" + typeArray[randInt(0, typeArray.length - 1)];
+		if (this.chosenVideos.includes(id)) {
 			return getRandVideoSlugById(randIntNot(0, vods.length - 1, randNumber));
-		}else{
+		} else {
 			return returnVal;
 		}
 	}
@@ -142,7 +143,7 @@ export default class VideoHolder extends React.Component {
 	 * Animation is done.
 	 *
 	 */
-	removeVideoOnended(){
+	removeVideoOnended() {
 		this.videos.forEach((vid) => {
 			vid.onended = () => {
 				// do nothing.
@@ -163,7 +164,7 @@ export default class VideoHolder extends React.Component {
 			video2Play.play();
 		} else {
 			this.setState({activeVideo: -1});
-			this.setState({coverStatus:"hidden"});
+			this.setState({coverStatus: "hidden"});
 			this.removeVideoOnended();
 		}
 	}
@@ -174,26 +175,26 @@ export default class VideoHolder extends React.Component {
 	 *
 	 */
 	holderClassName(status) {
- 		let additionalClass;
- 		if (this.props.videoQuantity == 2) {
- 			additionalClass = styles.videoHolder2;
- 		} else if (this.props.videoQuantity == 3) {
- 			additionalClass = styles.videoHolder3;
- 		} else if (this.props.videoQuantity == 4) {
- 			additionalClass = styles.videoHolder4;
- 		}
-		if(status == "shown"){
+		let additionalClass;
+		if (this.props.videoQuantity == 2) {
+			additionalClass = styles.videoHolder2;
+		} else if (this.props.videoQuantity == 3) {
+			additionalClass = styles.videoHolder3;
+		} else if (this.props.videoQuantity == 4) {
+			additionalClass = styles.videoHolder4;
+		}
+		if (status == "shown") {
 			return styles.videoHolder + " " + styles.videoHolderShow + " " + additionalClass;
-		}else if(status == "hidden"){
+		} else if (status == "hidden") {
 			return styles.videoHolder + " " + additionalClass;
 		}
- 	}
+	}
 
 	/**
 	 * Get back to main menu of the game.
 	 *
 	 */
-	backMainMenu(){
+	backMainMenu() {
 		this.props.onGameStop();
 	}
 
@@ -202,14 +203,14 @@ export default class VideoHolder extends React.Component {
 	 * according to videoQuantity.
 	 *
 	 */
-	videoClick(videoid){
-			let videoCheck = parseInt(videoid.target.getAttribute("id").replace("video", "")) - 1;
-			if(videoCheck == this.trueAnswer){
-				this.rightAnswer(videoCheck);
-			}else{
-				this.wrongAnswer(videoCheck);
-				this.videos[this.trueAnswer].play();
-			}
+	videoClick(videoid) {
+		let videoCheck = parseInt(videoid.target.getAttribute("id").replace("video", "")) - 1;
+		if (videoCheck == this.trueAnswer) {
+			this.rightAnswer(videoCheck);
+		} else {
+			this.wrongAnswer(videoCheck);
+			this.videos[this.trueAnswer].play();
+		}
 	}
 
 	/**
@@ -218,14 +219,14 @@ export default class VideoHolder extends React.Component {
 	 *
 	 * @param {videoCheck} order of the video that the right answer is.
 	 */
-	rightAnswer(videoCheck){
-			console.log("Right Answer!");
-			// Send right answer data to analytic.
-			this.session.correctInput(this.currentWord, this.wrongAttempt);
-			this.setState({rightAnswer: true});
-			setTimeout(() => {
-				this.props.onRightAnswer();
-			}, 3000);
+	rightAnswer(videoCheck) {
+		console.log("Right Answer!");
+		// Send right answer data to analytic.
+		this.session.correctInput(this.currentWord, this.wrongAttempt);
+		this.setState({rightAnswer: true});
+		setTimeout(() => {
+			this.props.onRightAnswer();
+		}, 3000);
 	}
 
 	/**
@@ -234,13 +235,12 @@ export default class VideoHolder extends React.Component {
 	 *
 	 * @param {videoCheck} order of the video that wrong answer is.
 	 */
-	wrongAnswer(videoCheck){
-			console.log("Wrong Answer!");
-			this.wrongAttempt++;
-			this.videos[videoCheck].style.opacity = "0.5";
-			this.session.wrongInput(videoCheck, this.wrongAttempt, 0, this.currentWord);
+	wrongAnswer(videoCheck) {
+		console.log("Wrong Answer!");
+		this.wrongAttempt++;
+		this.videos[videoCheck].style.opacity = "0.5";
+		this.session.wrongInput(videoCheck, this.wrongAttempt, 0, this.currentWord);
 	}
-
 
 	/**
 	 * Prepare the video DOM array respect to active Vid.
@@ -250,32 +250,25 @@ export default class VideoHolder extends React.Component {
 	prepVideos(activeVid) {
 		var videos = [];
 		for (var i = 0; i < this.props.videoQuantity; i++) {
-			videos.push(
-				<Video
-				id={i + 1}
-				key={i + 1}
-				slug={this.videoGrid[i]}
-				onClick={(e) => this.videoClick(e)}
-				active={(i == activeVid) ? "true": "false"}/>
-			);
+			videos.push(<Video id={i + 1} key={i + 1} slug={this.videoGrid[i]} onClick={(e) => this.videoClick(e)} active={(i == activeVid)
+				? "true"
+				: "false"}/>);
 		}
 		return videos;
 	}
 
 	render() {
-		if(!this.state.rightAnswer){
+		if (!this.state.rightAnswer) {
 			return (
 				<div className={this.holderClassName(this.state.videoCarrierStatus)}>
 					{this.prepVideos(this.state.activeVideo)}
-					<Back onClick={this.backMainMenu.bind(this)} />
-					<Announce text={this.trueText} status={this.state.announceStatus} />
-					<Cover status={this.state.coverStatus} />
+					<Back onClick={this.backMainMenu.bind(this)}/>
+					<Announce text={this.trueText} status={this.state.announceStatus}/>
+					<Cover status={this.state.coverStatus}/>
 				</div>
 			);
-		}else{
-			return (
-					<RightAnswer/>
-			);
+		} else {
+			return (<RightAnswer/>);
 		}
 
 	}

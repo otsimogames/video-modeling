@@ -3,7 +3,6 @@ import React from 'react';
 
 export default class Video extends React.Component {
 
-
 	constructor(props) {
 		super(props);
 		this.videoFormat = otsimo.kv.videoFormat;
@@ -29,12 +28,12 @@ export default class Video extends React.Component {
 	 * Generate class name respect video beeing active.
 	 *
 	 */
-	computeClassName(){
+	computeClassName() {
 		let classArray = styles.video;
-		if(this.props.active == "true"){
+		if (this.props.active == "true") {
 			classArray = classArray + " " + styles.videoActive;
 		}
-	 	return classArray;
+		return classArray;
 	}
 
 	render() {
