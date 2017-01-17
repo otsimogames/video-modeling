@@ -43,6 +43,9 @@
     "rightAnswerText": {
         "text": "Congratulations!"
     },
+    "endScreenText": {
+        "text": "Good Job!"
+    },
     "preload": [{
         "name": "back_pattern",
         "type": "image",
