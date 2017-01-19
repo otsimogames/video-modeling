@@ -7,7 +7,7 @@ var canvas,
 	w,
 	h,
 	particles = [],
-	probability = 0.04,
+	probability = 0.08,
 	xPoint,
 	yPoint;
 
@@ -59,7 +59,7 @@ function createFirework() {
 	xPoint = Math.random() * (w - 200) + 100;
 	yPoint = Math.random() * (h - 200) + 100;
 	var nFire = Math.random() * 50 + 100;
-	var c = "rgb(" + (~~ (Math.random() * 200 + 55)) + "," + (~~ (Math.random() * 200 + 55)) + "," + (~~ (Math.random() * 200 + 55)) + ")";
+	var c = "rgb(" + (~~ (Math.random() * 200 + 1)) + "," + (~~ (Math.random() * 100 + 1)) + "," + (~~ (Math.random() * 200 + 1)) + ")";
 	for (var i = 0; i < nFire; i++) {
 		var particle = new Particle();
 		particle.color = c;
@@ -88,7 +88,7 @@ function Particle() {
 }
 
 Particle.prototype = {
-	gravity: 0.05,
+	gravity: 0.1,
 	move: function() {
 		this.x += this.vx;
 		this.vy += this.gravity;
