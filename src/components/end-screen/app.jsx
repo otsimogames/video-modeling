@@ -2,6 +2,7 @@ import styles from './index.scss';
 import React from 'react';
 import Audio from '../audio/app.jsx';
 import Announce from '../announce/app.jsx';
+import Firework from '../firework/app.jsx';
 
 export default class EndScreen extends React.Component {
 	constructor(props) {
@@ -29,6 +30,7 @@ export default class EndScreen extends React.Component {
 				<div></div>
 				<Announce text={this.announceText} status={this.state.announceStatus}/>
 				<Audio slug={this.audioSlug}/>
+				<Firework/>
 			</div>
 		)
 	}
