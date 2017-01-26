@@ -185,9 +185,10 @@ export default class VideoHolder extends React.Component {
 			additionalClass = styles.videoHolder4;
 		}
 		if (status == "shown") {
-			return styles.videoHolder + " " + styles.videoHolderShow + " " + additionalClass;
+			return [styles.videoHolder, styles.videoHolderShow, additionalClass].join(" ");
 		} else if (status == "hidden") {
-			return styles.videoHolder + " " + additionalClass;
+			return [styles.videoHolder, additionalClass].join(" ");
+
 		}
 	}
 

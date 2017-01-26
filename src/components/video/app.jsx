@@ -32,7 +32,7 @@ export default class Video extends React.Component {
 	computeClassName() {
 		let classArray = styles.video;
 		if (this.props.active == "true") {
-			classArray = classArray + " " + styles.videoActive;
+			classArray = [styles.videoActive, classArray].join(" ");
 		}
 		return classArray;
 	}

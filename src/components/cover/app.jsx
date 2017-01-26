@@ -13,7 +13,7 @@ export default class Cover extends React.Component {
 		 */
 	currentClass(status) {
 		if (status == "shown") {
-			return styles.cover + " " + styles.coverOpen;
+			return [styles.cover, styles.coverOpen].join(" ");
 		} else if (status == "hidden") {
 			return styles.cover;
 		}
