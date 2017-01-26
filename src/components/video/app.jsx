@@ -1,5 +1,6 @@
 import styles from './index.scss';
 import React from 'react';
+import Hint from '../hint/app.jsx';
 
 export default class Video extends React.Component {
 
@@ -43,6 +44,7 @@ export default class Video extends React.Component {
 					<source src={this.videoSlug()} type={this.videoFormat.type}/>
 					Your browser does not support the video tag.
 				</video>
+				<Hint/>
 			</div>
 		)
 	}

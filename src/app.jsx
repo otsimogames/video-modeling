@@ -8,7 +8,7 @@ import Session from './js/session.js';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.videoQuantity = 3;
+		this.videoQuantity = 4;
 		this.state = {
 			play: false,
 			endScreen: false,
