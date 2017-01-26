@@ -12,6 +12,10 @@ export default class Hint extends React.Component {
 		// Hint time comes in seconds
 	}
 
+	/**
+	 * Start the animation timing after component is mounted.
+	 *
+	 */
 	componentDidMount() {
 		setTimeout(() => {
 			this.setState({"status": "show"});
@@ -21,6 +25,11 @@ export default class Hint extends React.Component {
 		}, this.hintTime);
 	}
 
+	/**
+	 * Generate adjacenting class name of the component respect
+	 * to current status state.
+	 *
+	 */
 	getClassName() {
 		if (this.state.status == "show") {
 			return [styles.hint, styles.hintShown].join(" ");

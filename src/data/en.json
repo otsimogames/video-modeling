@@ -16,7 +16,7 @@
         "easy_size": 2,
         "medium_size": 3,
         "hard_size": 4,
-        "hint_time": 10
+        "hint_time": 20
     },
     "videoFormat": {
         "id": "video{$1}",
