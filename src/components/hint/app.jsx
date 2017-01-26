@@ -17,12 +17,21 @@ export default class Hint extends React.Component {
 	 *
 	 */
 	componentDidMount() {
-		setTimeout(() => {
+		this.stateChanger = setTimeout(() => {
 			this.setState({"status": "show"});
-			setTimeout(() => {
+			this.stateChangerFadeout = setTimeout(() => {
 				this.setState({"status": "hidden"});
 			}, 2000);
 		}, this.hintTime);
+	}
+
+	/**
+	 * clearTimeouts for state changing
+	 *
+	 */
+	componentWillUnmount() {
+		clearTimeout(this.stateChanger);
+		clearTimeout(this.stateChangerFadeout);
 	}
 
 	/**
