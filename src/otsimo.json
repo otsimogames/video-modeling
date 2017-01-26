@@ -1,6 +1,6 @@
 {
     "unique_name": "video-modeling",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "index.html",
     "licence": "GPL-v3",
     "languages": [
@@ -14,10 +14,12 @@
     "developer_name": "Otsimo",
     "homepage": "https://github.com/otsimo/video-mdeling",
     "repository": "https://github.com/otsimo/video-mdeling.git",
-    "authors": [{
-        "name": "Burak Tokak",
-        "email": "burak@otsimo.com"
-    }],
+    "authors": [
+        {
+            "name": "Burak Tokak",
+            "email": "burak@otsimo.com"
+        }
+    ],
     "exclude": [],
     "settings": "settings.json",
     "kv_path": "data",
@@ -25,7 +27,8 @@
         "sandbox",
         "tts"
     ],
-    "metadata": [{
+    "metadata": [
+        {
             "language": "en",
             "visible_name": "Video Modeling",
             "summary": "An app to compose phrases for kids with autism.",

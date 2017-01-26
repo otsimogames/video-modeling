@@ -8,6 +8,8 @@ var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 var otsimoPath = path.resolve(__dirname, 'node_modules', 'otsimo');
 var sourcePath = path.resolve(__dirname, 'src');
+var i18nPath = path.resolve(__dirname, 'i18n');
+var i18nOutputPath = path.resolve(__dirname, 'public', 'i18n');
 
 // local css modules
 loaders.push({
@@ -29,9 +31,7 @@ loaders.push({
 });
 
 module.exports = {
-	entry: [
-		'./src/index.jsx'
-	],
+	entry: ['./src/index.jsx'],
 	output: {
 		publicPath: '/',
 		path: path.join(__dirname, 'public'),
@@ -59,20 +59,20 @@ module.exports = {
 			}
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
-		new ExtractTextPlugin('[contenthash].css', {
-			allChunks: true
-		}),
-		new HtmlWebpackPlugin({
-			template: './src/template.html',
-			title: 'Video Modeling App'
-		}),
+		new ExtractTextPlugin('[contenthash].css', {allChunks: true}),
+		new HtmlWebpackPlugin({template: './src/template.html', title: 'Video Modeling App'}),
 		new webpack.optimize.DedupePlugin(),
-		new CopyWebpackPlugin([{
-			context: sourcePath,
-			from: '**/*.{woff,json,svg,mp4,mp3,png}',
-		}, {
-			context: otsimoPath,
-			from: 'otsimo.js'
-		}])
+		new CopyWebpackPlugin([
+			{
+				context: sourcePath,
+				from: '**/*.{woff,json,svg,mp4,mp3,png}'
+			}, {
+				context: otsimoPath,
+				from: 'otsimo.js'
+			}, {
+				from: i18nPath,
+				to: i18nOutputPath
+			}
+		])
 	]
 };
