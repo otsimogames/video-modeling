@@ -39,7 +39,7 @@ export default class App extends React.Component {
 		this.session.sessionStart();
 		// Send session start data to analytic
 
-		this.setState({play: true});
+		this.setState({play: true, endScreen: false});
 	}
 
 	stopGame() {

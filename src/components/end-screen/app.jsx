@@ -2,6 +2,7 @@ import styles from './index.scss';
 import React from 'react';
 import Audio from '../audio/app.jsx';
 import Announce from '../announce/app.jsx';
+import Play from '../play/app.jsx';
 import Firework from '../firework/app.jsx';
 
 export default class EndScreen extends React.Component {
@@ -20,7 +21,7 @@ export default class EndScreen extends React.Component {
 	 */
 	componentDidMount() {
 		setTimeout(() => {
-			this.setState({announceStatus: "center"});
+			this.setState({announceStatus: "home"});
 		}, 100);
 	}
 
