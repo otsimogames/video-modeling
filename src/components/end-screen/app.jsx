@@ -27,10 +27,10 @@ export default class EndScreen extends React.Component {
 	render() {
 		return (
 			<div className={styles.endScreen}>
-				<div></div>
+				<Firework/>
 				<Announce text={this.announceText} status={this.state.announceStatus}/>
 				<Audio slug={this.audioSlug}/>
-				<Firework/>
+				<Play onClick={this.props.onPlayGame}/>
 			</div>
 		)
 	}

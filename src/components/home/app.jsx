@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import React from 'react';
 import Back from '../back/app.jsx';
+import Play from '../play/app.jsx';
 import Announce from '../announce/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
 
@@ -14,8 +15,9 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
+				<Back onClick={otsimo.quitgame}/>
 				<Announce text={this.gameName} status={this.status}/>
-				<div onClick={this.props.onPlayGame} className={styles.play}></div>
+				<Play onClick={this.props.onPlayGame}/>
 			</div>
 		)
 	}

@@ -49,7 +49,7 @@ export default class App extends React.Component {
 	render() {
 		if (this.state.play == true) {
 			if (this.state.endScreen == true) {
-				return (<EndScreen/>);
+				return (<EndScreen onPlayGame={this.playGame.bind(this)}/>);
 			} else {
 				return (
 					<div key={this.state.times}>
