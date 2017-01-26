@@ -44,7 +44,7 @@ export default class Video extends React.Component {
 					<source src={this.videoSlug()} type={this.videoFormat.type}/>
 					Your browser does not support the video tag.
 				</video>
-				<Hint/>
+				{this.props.isTrue && <Hint status="show"/>}
 			</div>
 		)
 	}

@@ -253,7 +253,7 @@ export default class VideoHolder extends React.Component {
 		for (var i = 0; i < this.props.videoQuantity; i++) {
 			videos.push(<Video id={i + 1} key={i + 1} slug={this.videoGrid[i]} onClick={(e) => this.videoClick(e)} active={(i == activeVid)
 				? "true"
-				: "false"}/>);
+				: "false"} isTrue={this.trueAnswer == i}/>);
 		}
 		return videos;
 	}
