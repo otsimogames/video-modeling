@@ -15,6 +15,9 @@ export default class Hint extends React.Component {
 	componentDidMount() {
 		setTimeout(() => {
 			this.setState({"status": "show"});
+			setTimeout(() => {
+				this.setState({"status": "hidden"});
+			}, 2000);
 		}, this.hintTime);
 	}
 
