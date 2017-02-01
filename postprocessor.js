@@ -31,6 +31,15 @@ fs.readdir("public", (err, files) => {
 
 fs.readdir("public", (err, files) => {
 	files.forEach(file => {
+		if (file.includes(".json")) {
+			replaceAsync("public/" + file, '"/img', '"img');
+			return false;
+		}
+	});
+});
+
+fs.readdir("public", (err, files) => {
+	files.forEach(file => {
 		if (file.includes(".html")) {
 			replaceAsync("public/" + file, /<!--StartDevelopment-->[\s\S]*<!--CloseDevelopment-->/g, '');
 			return false;
