@@ -10,7 +10,9 @@ export default class Announce extends React.Component {
 	}
 
 	componentDidMount() {
-		//document.getElementById("announcerSVGText").textContent = this.props.text;
+		let announcerSVGText = document.getElementById("announcerSVGText");
+		announcerSVGText.textContent = this.props.text;
+		announcerSVGText.style.paintOrder = "stroke";
 	}
 
 	/**
@@ -37,7 +39,7 @@ export default class Announce extends React.Component {
 					<font>
 						<font-face font-family="mfont"/>
 					</font>
-					<text id="announcerSVGText" x="50%" y="60">{this.props.text}</text>
+					<text id="announcerSVGText" x="50%" y="60">Default</text>
 				</svg>
 			</div>
 		)
