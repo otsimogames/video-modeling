@@ -9,6 +9,10 @@ export default class Announce extends React.Component {
 		this.tts.speak(this.props.text);
 	}
 
+	componentDidMount() {
+		document.getElementById("announcerSVGText").textContent = this.props.text;
+	}
+
 	/**
 	 * Change the current class relative to given status.
 	 *
@@ -30,9 +34,7 @@ export default class Announce extends React.Component {
 		return (
 			<div onClick={this.props.onClick} className={this.currentClass(this.props.status)}>
 				<svg xmlns="http://www.w3.org/2000/svg">
-					<text x="50%" y="60">
-						{this.props.text}
-					</text>
+					<text id="announcerSVGText" x="50%" y="60"></text>
 				</svg>
 			</div>
 		)
