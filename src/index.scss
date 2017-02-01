@@ -1,6 +1,16 @@
 @font-face {
     font-family: "mfont";
-    src: url("/img/mfont.woff") format('woff');
+    src: url("/img/mfont.woff") format('woff'), url('/img/mfont.svg#mfont') format('svg');
+    /* For Legacy iOS */
+}
+
+* {
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input {
+    -webkit-user-select: auto !important;
 }
 
 body {
@@ -12,4 +22,15 @@ body {
     font-family: "mfont", sans-serif;
     /* font-family: "Helvetica Neue", sans-serif; */
     /* iOS font */
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden !important;
+    user-select: none;
+    /* Kill touch scrolling */
+    /* -webkit-touch-callout: none; */
+    -webkit-user-drag: none;
+}
+
+img {
+    pointer-events: none !important;
+    /* Kill "Save image - Copy" Menu */
 }
