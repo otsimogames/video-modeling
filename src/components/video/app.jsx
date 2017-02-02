@@ -40,7 +40,7 @@ export default class Video extends React.Component {
 	render() {
 		return (
 			<div onClick={this.props.onClick} className={this.computeClassName()}>
-				<video id={this.videoId()} preload="auto" muted="true" playsInline="true">
+				<video id={this.videoId()} preload="metadata" muted="true" playsInline="true">
 					<source src={this.videoSlug()} type={this.videoFormat.type}/>
 					Your browser does not support the video tag.
 				</video>
