@@ -17,7 +17,7 @@ export default class Hint extends React.Component {
 	 *
 	 */
 	componentDidMount() {
-		this.stateChanger = setTimeout(() => {
+		this.stateChanger = setInterval(() => {
 			this.setState({"status": "show"});
 			this.stateChangerFadeout = setTimeout(() => {
 				this.setState({"status": "hidden"});
