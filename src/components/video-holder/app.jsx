@@ -257,10 +257,14 @@ export default class VideoHolder extends React.Component {
 		console.log("Right Answer!");
 		// Send right answer data to analytic.
 		this.session.correctInput(this.currentWord, this.wrongAttempt);
-		this.setState({rightAnswer: true});
+		this.setState({videoCarrierStatus: "hidden"});
 		setTimeout(() => {
-			this.props.onRightAnswer(this.trueAnswerChosen);
-		}, 3000);
+			this.setState({rightAnswer: true});
+			setTimeout(() => {
+				this.props.onRightAnswer(this.trueAnswerChosen);
+			}, 3000);
+		}, 500);
+
 	}
 
 	/**
