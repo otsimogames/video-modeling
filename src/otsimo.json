@@ -1,6 +1,6 @@
 {
     "unique_name": "video-modeling",
-    "version": "1.0.16",
+    "version": "1.0.21",
     "main": "index.html",
     "licence": "GPL-v3",
     "languages": [
@@ -11,10 +11,12 @@
     "developer_name": "Otsimo",
     "homepage": "https://github.com/otsimo/video-mdeling",
     "repository": "https://github.com/otsimo/video-mdeling.git",
-    "authors": [{
-        "name": "Burak Tokak",
-        "email": "burak@otsimo.com"
-    }],
+    "authors": [
+        {
+            "name": "Burak Tokak",
+            "email": "burak@otsimo.com"
+        }
+    ],
     "exclude": [],
     "settings": "settings.json",
     "kv_path": "data",
@@ -22,7 +24,8 @@
         "sandbox",
         "tts"
     ],
-    "metadata": [{
+    "metadata": [
+        {
             "language": "en",
             "visible_name": "Video Modeling",
             "summary": "An app to focus on kids learn by modeling videos",

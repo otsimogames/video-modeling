@@ -9,6 +9,12 @@ export default class Video extends React.Component {
 		this.videoFormat = otsimo.kv.videoFormat;
 	}
 
+	componentDidMount() {
+		let video = document.getElementById(this.videoId());
+		// Load the video adter the component mounts.
+		video.load();
+	}
+
 	/**
 	 * Return video id string
 	 *

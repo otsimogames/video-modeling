@@ -52,6 +52,7 @@ export default class VideoHolder extends React.Component {
 
 		// send data to analytic that step started
 		this.session.startStep();
+
 	}
 
 	/**
