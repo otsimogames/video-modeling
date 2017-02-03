@@ -8,7 +8,8 @@ import Session from './js/session.js';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.videoQuantity = 3;
+
+		this.videoQuantity = this.getVideoQuantity();
 		this.state = {
 			play: false,
 			endScreen: false,
@@ -17,6 +18,19 @@ export default class App extends React.Component {
 		this.prevAsked = "none";
 	}
 	// NOTE: Shift this to difficulty later on.
+
+	getVideoQuantity() {
+		switch (otsimo.settings.difficulty) {
+			case "easy":
+				return 2;
+			case "medium":
+				return 3;
+			case "easy":
+				return 4;
+			default:
+				return 3;
+		}
+	}
 
 	answeredRight(prevQuestion) {
 		if (this.state.times == otsimo.kv.game.session_step) {
