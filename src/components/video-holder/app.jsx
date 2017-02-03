@@ -6,6 +6,7 @@ import Announce from '../announce/app.jsx';
 import Cover from '../cover/app.jsx';
 import RightAnswer from '../right-answer/app.jsx';
 import {randInt, randIntNot} from '../../js/utils.js';
+import createjs from 'preload-js';
 
 export default class VideoHolder extends React.Component {
 	constructor(props) {
@@ -19,6 +20,8 @@ export default class VideoHolder extends React.Component {
 			rightAnswer: false
 		};
 		this.session = this.props.session;
+		this.preloadQ = new createjs.LoadQueue();
+		this.videoFormat = otsimo.kv.videoFormat;
 		this.trueAnswer = randInt(0, (this.props.videoQuantity - 1));
 		console.log("trueAnswer: " + this.trueAnswer);
 		this.currentWord = "";
@@ -26,6 +29,12 @@ export default class VideoHolder extends React.Component {
 		this.wrongAttempt = 0;
 		this.chosenVideos = [];
 		this.chooseVideos();
+		this.preloadVideos();
+
+		this.preloadQ.on("complete", () => {
+			console.log("preloaded");
+		}, this);
+		// Create preload queue
 	}
 
 	/**
@@ -89,6 +98,28 @@ export default class VideoHolder extends React.Component {
 			}
 			i++;
 		}
+
+	}
+
+	/**
+	 * Preload video files
+	 *
+	 * @param {fileId} intiger
+	 * @param {fileAdress} string
+	 */
+	preload(fileId, fileAdress) {
+		this.preloadQ.loadFile({id: fileId, src: fileAdress, type: createjs.AbstractLoader.VIDEO});
+	}
+	/**
+	 * Send chosen videos to preloader
+	 *
+	 * @param {fileId} intiger
+	 * @param {fileAdress} string
+	 */
+	preloadVideos() {
+		this.videoGrid.forEach((vG) => {
+			this.preload(this.videoFormat.slug.replace("{$1}", vG));
+		});
 	}
 
 	/**
