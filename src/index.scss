@@ -7,6 +7,9 @@
 * {
     -webkit-user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    /* -webkit-transform: translate3D(0, 0, 0); */
+    /* Transition flickering problem */
 }
 
 input {
