@@ -35,4 +35,14 @@
     .video {
         top: 31%;
     }
+
+    .video video {
+        border: 5px solid #fff;
+    }
+
+    .videoActive {
+        top: 10% !important;
+        width: 250px !important;
+        left: calc(50% - 125px) !important;
+    }
 }

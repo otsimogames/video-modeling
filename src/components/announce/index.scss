@@ -36,3 +36,24 @@
     fill: #d03164;
     transform: translateZ(0);
 }
+@media screen and (max-height: 400px) {
+    /* Phone */
+    .announce {
+        font-size: 40px;
+        line-height: 35px;
+    }
+
+    .announce svg {
+        stroke-width: 5;
+    }
+
+    .announceOpen {
+        top: 1%;
+        opacity: 1;
+    }
+
+    .announceHome {
+        top: 20%;
+        opacity: 1;
+    }
+}
