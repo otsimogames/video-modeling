@@ -257,16 +257,23 @@ export default class VideoHolder extends React.Component {
 	 * @param {videoCheck} order of the video that the right answer is.
 	 */
 	rightAnswer(videoCheck) {
+		let rightVod = this.videos[videoCheck];
+		rightVod.style.bottom = "15%";
 		console.log("Right Answer!");
 		// Send right answer data to analytic.
 		this.session.correctInput(this.currentWord, this.wrongAttempt);
 		this.setState({videoCarrierStatus: "hidden"});
 		setTimeout(() => {
 			this.setState({rightAnswer: true});
-			setTimeout(() => {
-				this.props.onRightAnswer(this.trueAnswerChosen);
-			}, 3000);
-		}, 500);
+		}, 1300);
+
+		setTimeout(() => {
+			rightVod.style.bottom = "-100%";
+		}, 1000);
+
+		setTimeout(() => {
+			this.props.onRightAnswer(this.trueAnswerChosen);
+		}, 4000);
 
 	}
 

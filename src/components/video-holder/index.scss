@@ -12,6 +12,11 @@
     bottom: 0;
     left: 0;
 }
+
+.videoHolder div,
+.videoHolder div video {
+    transform: translateZ(0);
+}
 /* Might wanna consider recoding the following after scss */
 /* Video Grid with 2 videos */
 .videoHolder2 div {

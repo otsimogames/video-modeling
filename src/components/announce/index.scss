@@ -6,6 +6,7 @@
     line-height: 60px;
     letter-spacing: 0;
     transition: 300ms top;
+    transform: translateZ(0);
 }
 
 .announceOpen {
@@ -32,4 +33,5 @@
     stroke: #fff;
     stroke-width: 8;
     fill: #d03164;
+    transform: translateZ(0);
 }
