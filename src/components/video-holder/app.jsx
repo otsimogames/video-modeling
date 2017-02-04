@@ -118,7 +118,8 @@ export default class VideoHolder extends React.Component {
 	 */
 	preloadVideos() {
 		this.videoGrid.forEach((vG) => {
-			this.preload(this.videoFormat.slug.replace("{$1}", vG));
+			this.preload(vG, this.videoFormat.slug.replace("{$1}", vG));
+			console.log(this.videoFormat.slug.replace("{$1}", vG));
 		});
 	}
 
