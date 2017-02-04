@@ -6,6 +6,7 @@
     line-height: 60px;
     letter-spacing: 0;
     transition: 300ms top;
+    transition-timing-function: ease-out;
     transform: translateZ(0);
 }
 

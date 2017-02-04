@@ -2,8 +2,9 @@
     height: 70%;
     position: fixed;
     top: 15%;
-    transition: 300ms all;
     z-index: 1;
+    transition: 300ms all;
+    transition-timing-function: ease-out;
 }
 
 .video video {
@@ -19,6 +20,7 @@
     box-sizing: border-box;
     margin: 15px;
     transition: 300ms all;
+    transition-timing-function: ease-out;
 }
 
 .videoActive {
