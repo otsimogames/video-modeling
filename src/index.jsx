@@ -29,7 +29,7 @@ otsimo.run(() => {
 	app.style.height = `${h}px`;
 	app.style.width = `${w}px`;
 	app.style.backgroundImage = "url('" + otsKV.layout.backgroundImage + "')";
-	app.style.backgroundSize = "100%";
+	app.style.backgroundSize = "auto 100%";
 	// Initilize app width and height
 
 	renderApp();
