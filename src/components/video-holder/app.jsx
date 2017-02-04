@@ -195,7 +195,9 @@ export default class VideoHolder extends React.Component {
 		let video2Play = this.videos[myVidInt];
 		if (video2Play) {
 			this.setState({activeVideo: myVidInt});
-			video2Play.play();
+			setTimeout(() => {
+				video2Play.play();
+			}, 300);
 		} else {
 			this.setState({activeVideo: -1});
 			this.setState({coverStatus: "hidden"});
