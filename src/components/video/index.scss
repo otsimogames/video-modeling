@@ -30,3 +30,9 @@
     left: calc(50% - 250px) !important;
     z-index: 99;
 }
+@media screen and (max-height: 400px) {
+    /* Phone */
+    .video {
+        top: 31%;
+    }
+}

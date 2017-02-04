@@ -21,10 +21,15 @@ otsimo.run(() => {
 	loading.style.color = otsKV.loadingText.color;
 	loading.style.fontSize = otsKV.loadingText.size
 
+	var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+	var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
 	app.style.background = otsKV.layout.background;
-	app.style.height = otsimo.height + "px";
-	app.style.width = otsimo.width + "px";
+	app.style.height = `${h}px`;
+	app.style.width = `${w}px`;
 	app.style.backgroundImage = "url('" + otsKV.layout.backgroundImage + "')";
+	app.style.backgroundSize = "100%";
 	// Initilize app width and height
 
 	renderApp();
