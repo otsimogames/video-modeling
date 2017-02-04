@@ -8,3 +8,10 @@
     left: 3%;
     z-index: 9999;
 }
+@media screen and (max-height: 400px) {
+    /* Phone */
+    .back {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}

@@ -7,3 +7,12 @@
     top: calc(60% - 90px);
     left: calc(50% - 90px);
 }
+@media screen and (max-height: 400px) {
+    /* Phone */
+    .play {
+        height: 140px !important;
+        width: 140px !important;
+        top: calc(60% - 70px);
+        left: calc(50% - 70px);
+    }
+}
