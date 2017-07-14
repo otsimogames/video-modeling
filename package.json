@@ -20,10 +20,11 @@
     "homepage": "https://otsimo.com",
     "dependencies": {
         "node-sass": "^3.13.0",
-        "otsimo": "^1.5.0",
+        "otsimo": "1.8.15",
         "preload-js": "^0.6.3",
         "react": "15.4.1",
         "react-dom": "15.4.1",
+        "require-dir": "0.3.2",
         "sass-loader": "^4.0.2"
     },
     "devDependencies": {
